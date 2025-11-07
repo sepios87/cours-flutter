@@ -7,7 +7,7 @@
 - Travailler en équipe avec Git
 - Produire une application fonctionnelle et/ou esthétique selon vos objectifs
 
-🕐 **Durée estimée : +4h** (sur 2 séances minimum)
+🕐 **Durée estimée : 4 heures et plus** (sur 2 séances minimum)
 
 ---
 
@@ -187,8 +187,14 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 | **Documentation** | README complet, code commenté, instructions claires | 2 |
 | **Originalité et ambition** | Innovation, complexité du projet, features supplémentaires | 2 |
 | **Vidéo de démo** | Présentation claire, exhaustive et professionnelle | 1 |
-| **Total** |  | **/20** |
-| **Tests (BONUS)** | Tests unitaires et/ou widgets significatifs (min 5 tests) | +2 |
+| **Total** |  | **/20 + 2 bonus** |
+
+---
+
+### 🎁 Bonus (+2 points possibles)
+
+#### Bonus : Tests unitaires et/ou widgets (+2 points)
+Tests unitaires et/ou widgets significatifs (minimum 5 tests) couvrant les fonctionnalités principales de l'application.
 
 ---
 

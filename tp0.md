@@ -121,7 +121,7 @@ Tu dois voir une application avec un compteur qui s'incrémente quand tu cliques
 
 ---
 
-## 🪜 Étape 4 — Créer un "Hello World" personnalisé
+## 🪜 Étape 5 — Créer un "Hello World" personnalisé
 
 Remplace tout le contenu de `lib/main.dart` par :
 
@@ -194,7 +194,7 @@ class HomePage extends StatelessWidget {
 
 ---
 
-## 🪜 Étape 5 — Configurer Git et GitHub
+## 🪜 Étape 6 — Configurer Git et GitHub
 
 ### Installer et configurer Git
 
@@ -234,7 +234,7 @@ Rafraîchis la page GitHub : ton code doit apparaître !
 
 ---
 
-## 🪜 Étape 6 — Faire une modification et la pousser
+## 🪜 Étape 7 — Faire une modification et la pousser
 
 1. Modifie le code (change la couleur du bouton, ajoute du texte, etc.)
 2. Commite et pousse :
