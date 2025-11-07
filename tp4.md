@@ -27,6 +27,9 @@
      dio: ^5.4.0
    ```
 
+   > **💡 Pourquoi Dio ?**
+   > **Dio** est un package puissant pour faire des requêtes HTTP (appeler des APIs). Il est plus simple et complet que le package de base `http` : gestion automatique des erreurs, timeouts, intercepteurs, etc. C'est l'équivalent d'Axios en JavaScript.
+
 3. Mets à jour les packages :
    ```bash
    flutter pub get
@@ -86,6 +89,12 @@ class Movie {
 }
 ```
 
+> **💡 Notions clés expliquées :**
+> - **`String?`** : Le `?` signifie "nullable" (peut être null). Certains films n'ont pas de poster, donc `posterPath` peut être null.
+> - **getter** : `get fullPosterUrl` est une propriété calculée. Elle se comporte comme une variable mais calcule une valeur à chaque accès.
+> - **Opérateur ternaire** `? :` : C'est un if-else compact. `condition ? siVrai : siFaux`.
+> - **String interpolation** : `'$backdropPath'` insère directement la valeur dans la chaîne. Pratique pour construire des URLs.
+
 ---
 
 ## 🪜 Étape 3 — Créer le service API avec Dio
@@ -99,9 +108,21 @@ import '../models/movie.dart';
 class MovieService {
   final Dio _dio = Dio();
   static const String _baseUrl = 'https://api.themoviedb.org/3';
-  static const String _apiKey = 'TA_CLE_API_ICI'; // ⚠️ Remplace par ta clé API
+
+  // Récupère la clé API depuis les variables d'environnement
+  static const String _apiKey = String.fromEnvironment(
+    'TMDB_API_KEY',
+    defaultValue: '', // Valeur par défaut si la clé n'est pas fournie
+  );
 
   Future<List<Movie>> getPopularMovies() async {
+    // Vérifie que la clé API est bien fournie
+    if (_apiKey.isEmpty) {
+      throw Exception(
+        'Clé API manquante ! Lance l\'app avec --dart-define=TMDB_API_KEY=ta_clé'
+      );
+    }
+
     try {
       final response = await _dio.get(
         '$_baseUrl/movie/popular',
@@ -124,6 +145,12 @@ class MovieService {
   }
 
   Future<List<Movie>> searchMovies(String query) async {
+    if (_apiKey.isEmpty) {
+      throw Exception(
+        'Clé API manquante ! Lance l\'app avec --dart-define=TMDB_API_KEY=ta_clé'
+      );
+    }
+
     try {
       final response = await _dio.get(
         '$_baseUrl/search/movie',
@@ -146,6 +173,57 @@ class MovieService {
   }
 }
 ```
+
+### Comment lancer l'application avec ta clé API
+
+**En ligne de commande :**
+```bash
+flutter run --dart-define=TMDB_API_KEY=ta_clé_api_ici
+```
+
+**Dans VS Code :**
+
+Crée un fichier `.vscode/launch.json` à la racine du projet :
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter (Development)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define=TMDB_API_KEY=ta_clé_api_ici"
+      ]
+    }
+  ]
+}
+```
+
+**Dans Android Studio :**
+
+1. Va dans **Run** → **Edit Configurations**
+2. Dans **Additional run args**, ajoute : `--dart-define=TMDB_API_KEY=ta_clé_api_ici`
+
+> **💡 Notions clés expliquées :**
+> - **String.fromEnvironment()** : Récupère une variable passée en ligne de commande avec `--dart-define`. C'est comme demander "est-ce qu'on m'a donné une valeur pour cette clé ?"
+> - **defaultValue** : La valeur utilisée si aucune clé n'est fournie (ici une chaîne vide)
+> - **--dart-define** : Permet de passer des variables au moment de la compilation. Contrairement aux variables d'environnement classiques, elles sont intégrées dans le code compilé
+> - **Validation `if (_apiKey.isEmpty)`** : Vérifie qu'une clé a bien été fournie avant de faire l'appel API
+>
+> **Pourquoi ne PAS hardcoder la clé API ?**
+> - **Sécurité** : Si tu push ton code sur GitHub, tout le monde voit ta clé
+> - **Révocation** : Si ta clé fuit, elle peut être utilisée par n'importe qui
+> - **Bonnes pratiques** : En entreprise, JAMAIS de secrets dans le code
+> - **Flexibilité** : Tu peux utiliser différentes clés (dev, prod) sans changer le code
+
+> **💡 Notions clés expliquées (suite) :**
+> - **try-catch** : Gère les erreurs. Le code dans `try` est exécuté, si une erreur survient, on saute dans `catch`.
+> - **queryParameters** : Les paramètres d'URL (après le `?`). Dio les encode automatiquement de façon sécurisée.
+> - **response.statusCode** : Le code de réponse HTTP (200 = succès, 404 = non trouvé, 500 = erreur serveur, etc.).
+> - **response.data** : Les données JSON renvoyées par l'API, déjà parsées par Dio.
+> - **throw Exception** : Lance une erreur pour dire "quelque chose s'est mal passé". Elle sera attrapée par le `catch` dans le code qui appelle cette fonction.
 
 ---
 
@@ -284,6 +362,12 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 }
 ```
+
+> **💡 Notions clés expliquées :**
+> - **3 états** : `isLoading`, `errorMessage`, et les données. C'est le pattern classique pour gérer les appels API : chargement → succès OU erreur.
+> - **Opérateur ternaire imbriqué** : `isLoading ? ... : errorMessage != null ? ... : ...` permet de gérer les 3 états dans le même widget.
+> - **errorBuilder** : Fonction de callback appelée si une image ne charge pas. Permet d'afficher une icône à la place.
+> - **ClipRRect** : Arrondit les coins d'un widget. Ici, on arrondit les coins de l'image du poster.
 
 ---
 

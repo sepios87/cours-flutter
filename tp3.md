@@ -85,6 +85,12 @@ class MovieService {
 }
 ```
 
+> **💡 Notions clés expliquées :**
+> - **Future** : Représente une valeur qui sera disponible "dans le futur". Comme commander une pizza : tu n'as pas encore la pizza (Future), mais tu l'auras bientôt.
+> - **async/await** : `async` dit "cette fonction va prendre du temps", `await` dit "attends ici que ça se termine". C'est comme attendre que ton café soit prêt avant de le boire.
+> - **factory constructor** : Une méthode spéciale pour créer des objets. Ici, `Movie.fromJson()` transforme des données brutes JSON en objet Movie structuré.
+> - **rootBundle.loadString()** : Charge un fichier texte depuis les assets (comme lire un fichier sur le disque).
+
 ---
 
 ## 🪜 Étape 3 — Afficher la liste des films
@@ -231,7 +237,6 @@ import 'package:flutter/material.dart';
 import 'movie_list_page.dart';
 import 'service/movie_service.dart';
 
-// Instance globale du service (Singleton)
 final movieService = MovieService();
 
 void main() => runApp(const MyApp());
@@ -252,6 +257,13 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+> **💡 Notions clés expliquées :**
+> - **initState()** : Appelé UNE SEULE FOIS quand le widget est créé. C'est l'"allumage" du widget, parfait pour charger des données initiales.
+> - **Set** : Une collection qui ne peut pas contenir de doublons. Ici, `Set<String>` stocke les titres favoris (impossible d'ajouter deux fois le même film).
+> - **ListView.builder()** : Crée une liste optimisée qui ne construit que les éléments visibles à l'écran (performant pour de longues listes).
+> - **Navigator.push()** : Change de page en "empilant" une nouvelle page par-dessus l'actuelle (comme ajouter une carte sur un tas).
+> - **CircularProgressIndicator** : Une roue qui tourne pour indiquer qu'on attend que quelque chose charge.
 
 ✅ Tu devrais maintenant voir une liste de films avec la possibilité de les mettre ou retirer des favoris.
 

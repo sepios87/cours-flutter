@@ -24,6 +24,9 @@ class QuizPage extends StatefulWidget {
   State<QuizPage> createState() => _QuizPageState();
 }
 
+> **💡 Pourquoi StatefulWidget ?**
+> Un **StatefulWidget** est un widget qui peut "se souvenir" de choses et changer au fil du temps. Ici, ton quiz doit se souvenir de la question actuelle et du score. C'est différent d'un **StatelessWidget** qui est figé et ne change jamais. Pense à StatefulWidget comme une page avec un compteur qui bouge, et StatelessWidget comme une pancarte fixe.
+
 class _QuizPageState extends State<QuizPage> {
   int currentQuestion = 0;
   int score = 0;
@@ -113,6 +116,12 @@ class _QuizPageState extends State<QuizPage> {
   }
 }
 ```
+
+> **💡 Notions clés expliquées :**
+> - **StatefulWidget** : Un widget qui peut "se souvenir" de choses et changer au fil du temps (contrairement à StatelessWidget qui est figé). Ici, le quiz doit se souvenir de la question actuelle et du score.
+> - **setState()** : Dit à Flutter "j'ai changé quelque chose, redessine l'écran !". Sans setState(), même si tu modifies `currentQuestion`, l'interface ne se met pas à jour.
+> - **`...` (spread operator)** : "Décompresse" une liste pour en étaler les éléments. Utilisé ici pour afficher tous les boutons de réponses.
+> - **`.map()`** : Transforme chaque élément d'une liste. Pour chaque réponse, on crée un bouton.
 
 Puis modifie ton `lib/main.dart` :
 

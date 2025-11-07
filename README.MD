@@ -94,6 +94,38 @@ Ces bonus sont des **défis facultatifs** permettant d'aller plus loin (et de br
 
 ---
 
+## 📅 Organisation d'une séance de TP
+
+Chaque séance de TP suit le déroulé suivant :
+
+### 🎬 **Début de séance (20-30 minutes)**
+
+1. **Présentation des TPs précédents** (10-15 min)
+   - 2 étudiants tirés au sort présentent leur TP précédent devant la classe
+   - Présentation de 5 minutes maximum par étudiant
+   - Objectif : partager les solutions, apprendre des autres, s'entraîner à présenter son travail
+
+2. **Widget of the Week** (10-15 min)
+   - Visionnage collectif de 2 vidéos "Widget of the Week" de Flutter
+   - Discussion rapide sur les widgets présentés et leurs cas d'usage
+   - Ces vidéos courtes (1-2 min chacune) présentent des widgets utiles pour vos TPs
+   - Playlist : https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG
+
+### 💻 **Pendant le TP**
+
+- **Règle des 10 minutes** : Si vous êtes bloqué sur un problème pendant plus de 10 minutes, appelez l'enseignant
+  - Ne restez JAMAIS bloqué en silence
+  - Expliquez ce que vous avez déjà essayé
+- Utilisez les ressources : documentation Flutter, Stack Overflow, vos camarades
+
+### 🏁 **Fin de séance (5-10 minutes)**
+
+- **Checkpoint collectif** : "Est-ce que tout est OK ?"
+- Questions/réponses sur les difficultés rencontrées
+- Rappel des délais de rendu
+
+---
+
 ## 🧰 Bonnes pratiques à suivre dans tous les TPs
 
 - Toujours nommer vos projets `tpX_nom_prenom`
@@ -101,3 +133,4 @@ Ces bonus sont des **défis facultatifs** permettant d'aller plus loin (et de br
 - Tester sur **un vrai téléphone** quand c'est possible
 - Respecter la **structure Flutter standard** (`lib/`, `assets/`, etc.)
 - Ne pas laisser de code inutilisé ou de variables non nommées clairement
+- **⏱️ Règle des 10 minutes** : Bloqué ? Appelez l'enseignant ! Ne perdez pas de temps à tourner en rond

@@ -1,210 +1,127 @@
 # 🧱 TP0 – Configuration de l'environnement et premiers pas
 
 ## 🎯 Objectifs
-- Installer et configurer **Flutter** et **VS Code**
-- Créer et lancer son premier projet Flutter "Hello World"
-- Comprendre la **structure d'un projet Flutter**
-- Découvrir les bases de **Git et GitHub**
-- Se familiariser avec le **hot reload** et le debugging
+- Installer **Flutter** et **VS Code**
+- Créer et lancer son premier projet "Hello World"
+- Découvrir **Git et GitHub**
 
-🕐 **Durée estimée : 1 à 2 heures**
+🕐 **Durée estimée : 1 heure**
 
 ---
 
 ## 🪜 Étape 1 — Installer Flutter
 
 ### Windows
-
 1. Télécharge le SDK Flutter : https://docs.flutter.dev/get-started/install/windows
-2. Extrais l'archive dans un dossier (ex : `C:\flutter`)
+2. Extrais l'archive dans `C:\flutter`
 3. Ajoute Flutter au PATH :
    - Recherche "variables d'environnement" dans Windows
-   - Clique sur "Variables d'environnement"
-   - Dans "Variables système", trouve "Path" et clique sur "Modifier"
-   - Ajoute le chemin vers `C:\flutter\bin`
-4. Ouvre un nouveau terminal et vérifie :
-   ```bash
-   flutter --version
-   ```
+   - Dans "Variables système", trouve "Path" → "Modifier"
+   - Ajoute `C:\flutter\bin`
 
 ### macOS
-
 1. Télécharge le SDK Flutter : https://docs.flutter.dev/get-started/install/macos
-2. Extrais l'archive dans un dossier (ex : `~/flutter`)
-3. Ajoute Flutter au PATH en éditant `~/.zshrc` :
+2. Extrais l'archive dans `~/flutter`
+3. Ajoute au PATH (édite `~/.zshrc`) :
    ```bash
    export PATH="$PATH:$HOME/flutter/bin"
-   ```
-4. Recharge le terminal :
-   ```bash
    source ~/.zshrc
    ```
-5. Vérifie l'installation :
-   ```bash
-   flutter --version
-   ```
 
-### Vérification de l'environnement
+### ✅ Checkpoint : Vérifie l'installation
 
-Lance Flutter Doctor pour vérifier que tout est bien installé :
+Lance dans un terminal :
 ```bash
 flutter doctor
 ```
 
-Tu devrais voir une liste avec des coches vertes. Ne t'inquiète pas si certaines options sont manquantes (Android Studio, Xcode), nous allons les configurer.
-
----
-
-## 🪜 Étape 2 — Installer VS Code et les extensions Flutter
-
-1. **Télécharge VS Code** : https://code.visualstudio.com/
-2. **Installe l'extension Flutter** :
-   - Ouvre VS Code
-   - Va dans l'onglet Extensions (Ctrl+Shift+X ou Cmd+Shift+X)
-   - Recherche "Flutter" et installe l'extension officielle
-   - L'extension Dart sera installée automatiquement
-
-3. **Extensions recommandées** :
-   - **Dart** (déjà installé avec Flutter)
-   - **Error Lens** : affiche les erreurs directement dans le code
-   - **Material Icon Theme** : icônes jolies pour les fichiers
-   - **GitLens** : pour mieux visualiser l'historique Git
-
-✅ Vérifie que VS Code reconnaît Flutter en ouvrant la palette de commandes (Ctrl+Shift+P ou Cmd+Shift+P) et en tapant "Flutter". Tu devrais voir plusieurs commandes Flutter.
-
----
-
-## 🪜 Étape 3 — Configurer un émulateur ou appareil
-
-Tu as plusieurs options pour tester tes applications :
-
-### Option 1 : Navigateur Web (le plus simple pour débuter)
-Flutter peut lancer directement dans Chrome :
-```bash
-flutter run -d chrome
+Tu dois voir :
+```
+[✓] Flutter (Channel stable, 3.x.x)
+[✓] ou [!] Android toolchain / Chrome
 ```
 
-### Option 2 : Émulateur Android
-1. Installe Android Studio : https://developer.android.com/studio
-2. Lance Android Studio
-3. Va dans Tools > Device Manager
-4. Clique sur "Create Device"
-5. Choisis un modèle (ex : Pixel 6) et télécharge une image système
-6. Lance l'émulateur
-
-### Option 3 : Appareil physique
-- **Android** : Active le mode développeur et le débogage USB
-- **iOS** : Nécessite un Mac et Xcode
+**❌ Si `[✗] Flutter` :** Reprends l'installation et vérifie le PATH
+**⚠️ Si `[!]` :** C'est normal, continue !
 
 ---
 
-## 🪜 Étape 4 — Créer ton premier projet Flutter
+## 🪜 Étape 2 — Installer VS Code
 
-1. Ouvre un terminal et navigue vers le dossier où tu veux créer ton projet :
+1. Télécharge VS Code : https://code.visualstudio.com/
+2. Installe l'extension **Flutter** (Ctrl+Shift+X ou Cmd+Shift+X)
+   - L'extension Dart s'installera automatiquement
+
+---
+
+## 🪜 Étape 3 — Installer Android Studio (optionnel mais recommandé)
+
+Android Studio permet de lancer l'application sur un émulateur Android.
+
+1. **Télécharge Android Studio** : https://developer.android.com/studio
+2. **Installe-le** et lance-le
+3. **Accepte les licences** :
    ```bash
-   cd ~/Documents
+   flutter doctor --android-licenses
    ```
+   (Tape `y` pour accepter toutes les licences)
 
-2. Crée un nouveau projet Flutter :
+4. **Crée un émulateur** :
+   - Dans Android Studio, va dans **Tools > Device Manager**
+   - Clique sur **Create Device**
+   - Choisis un modèle (ex : **Pixel 6**)
+   - Télécharge une image système (ex : **Android 13**)
+   - Clique sur **Finish**
+
+5. **Lance l'émulateur** :
+   - Dans Device Manager, clique sur le bouton ▶️ à côté de ton émulateur
+
+### ✅ Checkpoint : Vérifie l'émulateur
+
+Lance dans un terminal :
+```bash
+flutter devices
+```
+
+Tu dois voir ton émulateur dans la liste :
+```
+Android SDK built for x86 (mobile) • emulator-5554 • android-x86 • Android 13 (API 33)
+```
+
+**❌ Si l'émulateur n'apparaît pas :** Relance-le depuis Android Studio
+
+---
+
+## 🪜 Étape 4 — Créer ton premier projet
+
+1. Ouvre un terminal :
    ```bash
+   cd ~/Localisation/De/Ton/Choix
    flutter create tp0_prenom_nom
    cd tp0_prenom_nom
-   ```
-
-3. Ouvre le projet dans VS Code :
-   ```bash
    code .
    ```
 
-4. Lance l'application :
-   - Ouvre la palette de commandes (Ctrl+Shift+P ou Cmd+Shift+P)
-   - Tape "Flutter: Select Device" et choisis ton appareil (Chrome, émulateur, etc.)
-   - Appuie sur F5 ou va dans Run > Start Debugging
+2. Lance l'application :
+   - Dans VS Code, ouvre la palette (Ctrl+Shift+P ou Cmd+Shift+P)
+   - Tape "Flutter: Select Device"
+   - Choisis un device :
+     - **Chrome** (le plus simple pour débuter)
+     - **Ton émulateur Android** (si tu as installé Android Studio)
+   - Appuie sur **F5**
 
-✅ Tu devrais voir une application avec un compteur qui s'incrémente quand tu cliques sur le bouton +
+### ✅ Checkpoint : Vérifie le lancement
 
----
+Tu dois voir une application avec un compteur qui s'incrémente quand tu cliques sur **+**
 
-## 🪜 Étape 5 — Comprendre la structure du projet
+**Sur Chrome :** L'app s'ouvre dans le navigateur
+**Sur Android :** L'app s'ouvre dans l'émulateur
 
-Explore les fichiers et dossiers créés :
-
-```
-tp0_prenom_nom/
-├── lib/                    # Code source de l'application
-│   └── main.dart          # Point d'entrée de l'app
-├── test/                   # Tests unitaires
-├── android/               # Code spécifique Android
-├── ios/                   # Code spécifique iOS
-├── web/                   # Code spécifique Web
-├── pubspec.yaml           # Configuration et dépendances
-└── README.md              # Documentation du projet
-```
-
-### Fichier principal : `lib/main.dart`
-
-Ouvre `lib/main.dart` et observe :
-
-```dart
-import 'package:flutter/material.dart';  // Import des widgets Flutter
-
-void main() => runApp(const MyApp());    // Point d'entrée de l'app
-
-class MyApp extends StatelessWidget {    // Widget racine
-  // ...
-}
-
-class MyHomePage extends StatefulWidget { // Page avec état
-  // ...
-}
-
-class _MyHomePageState extends State<MyHomePage> { // État de la page
-  // ...
-}
-```
-
-**Concepts clés** :
-- `main()` : Point d'entrée de l'application
-- `StatelessWidget` : Widget sans état (ne change pas)
-- `StatefulWidget` : Widget avec état (peut changer)
-- `MaterialApp` : Configure le thème et la navigation
-
-### Fichier de configuration : `pubspec.yaml`
-
-Ce fichier contient :
-- Le nom de l'application
-- Les dépendances (packages externes)
-- Les assets (images, fonts, etc.)
+**❌ Si erreur :** Lance `flutter devices` pour voir les devices disponibles
 
 ---
 
-## 🪜 Étape 6 — Modifier le code et tester le Hot Reload
-
-1. **Garde l'application en cours d'exécution**
-
-2. **Modifie le code** dans `lib/main.dart` :
-   - Change le titre de l'AppBar (ligne ~28)
-   - Change le texte de la page (ligne ~65)
-   - Change la couleur primaire (ligne ~15)
-
-3. **Sauvegarde le fichier** (Ctrl+S ou Cmd+S)
-
-4. **Observe le hot reload** : L'app se met à jour automatiquement sans redémarrage !
-
-**Exemple de modification** :
-```dart
-// Avant
-title: 'Flutter Demo Home Page',
-
-// Après
-title: 'Mon Premier TP Flutter',
-```
-
-✅ L'application devrait se mettre à jour instantanément dans l'émulateur/navigateur.
-
----
-
-## 🪜 Étape 7 — Créer un "Hello World" personnalisé
+## 🪜 Étape 4 — Créer un "Hello World" personnalisé
 
 Remplace tout le contenu de `lib/main.dart` par :
 
@@ -267,183 +184,103 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-✅ Remplace `[Ton Prénom]` par ton vrai prénom et vérifie que tout fonctionne.
+### ✅ Checkpoint : Teste le Hot Reload
+
+1. Remplace `[Ton Prénom]` par ton vrai prénom
+2. Sauvegarde (Ctrl+S ou Cmd+S)
+3. L'app doit se mettre à jour instantanément
+
+**❌ Si pas de mise à jour :** Appuie sur `R` dans le terminal pour forcer un Hot Restart
 
 ---
 
-## 🪜 Étape 8 — Installer et configurer Git
+## 🪜 Étape 5 — Configurer Git et GitHub
 
-### Installer Git
+### Installer et configurer Git
 
-**Windows** : Télécharge et installe depuis https://git-scm.com/download/win
+**Windows** : https://git-scm.com/download/win
+**macOS** : Déjà installé
 
-**macOS** : Git est déjà installé ou peut être installé avec :
-```bash
-brew install git
-```
-
-**Linux** :
-```bash
-sudo apt install git
-```
-
-### Configuration initiale
-
-Configure ton identité Git :
+Configure ton identité :
 ```bash
 git config --global user.name "Ton Nom"
 git config --global user.email "ton.email@example.com"
 ```
 
-Vérifie la configuration :
+### Créer un dépôt GitHub
+
+1. Va sur https://github.com et connecte-toi
+2. Clique sur "+" → "New repository"
+3. Nomme-le `tp0-prenom-nom` et laisse-le **public**
+4. **NE coche PAS** "Add a README"
+5. Clique sur "Create repository"
+
+### Pousser ton code
+
+Dans le terminal de ton projet :
 ```bash
-git config --list
-```
-
----
-
-## 🪜 Étape 9 — Créer un dépôt Git local
-
-1. **Initialise Git** dans ton projet (si ce n'est pas déjà fait) :
-   ```bash
-   git init
-   ```
-
-2. **Vérifie le fichier `.gitignore`** : Flutter crée automatiquement ce fichier avec les bons patterns
-
-3. **Fais ton premier commit** :
-   ```bash
-   git add .
-   git commit -m "Initial commit - Hello World Flutter"
-   ```
-
-4. **Vérifie l'historique** :
-   ```bash
-   git log
-   ```
-
-✅ Tu devrais voir ton commit dans l'historique.
-
----
-
-## 🪜 Étape 10 — Créer un dépôt GitHub et pousser le code
-
-### Créer un compte GitHub (si nécessaire)
-Va sur https://github.com et crée un compte gratuit.
-
-### Créer un nouveau repository
-
-1. Connecte-toi sur GitHub
-2. Clique sur le bouton "+" en haut à droite > "New repository"
-3. Nomme-le `tp0-prenom-nom`
-4. Laisse-le **public**
-5. **NE coche PAS** "Add a README" (on a déjà du code)
-6. Clique sur "Create repository"
-
-### Lier ton projet local à GitHub
-
-GitHub te donne les commandes à exécuter. Copie-les dans ton terminal :
-
-```bash
+git add .
+git commit -m "Initial commit - Hello World Flutter"
 git remote add origin https://github.com/ton-username/tp0-prenom-nom.git
 git branch -M main
 git push -u origin main
 ```
 
-✅ Rafraîchis la page GitHub : ton code devrait apparaître !
+### ✅ Checkpoint : Vérifie GitHub
+
+Rafraîchis la page GitHub : ton code doit apparaître !
+
+**❌ Si erreur d'authentification :** Tu dois créer un Personal Access Token sur GitHub
 
 ---
 
-## 🪜 Étape 11 — Faire des modifications et les pousser
+## 🪜 Étape 6 — Faire une modification et la pousser
 
-1. **Modifie le code** : Ajoute une icône ou change la couleur du bouton
-
-2. **Ajoute et commite** :
+1. Modifie le code (change la couleur du bouton, ajoute du texte, etc.)
+2. Commite et pousse :
    ```bash
    git add .
-   git commit -m "modification du bouton et ajout d'icône"
-   ```
-
-3. **Pousse vers GitHub** :
-   ```bash
+   git commit -m "modification de l'interface"
    git push
    ```
 
-✅ Vérifie sur GitHub que ton nouveau commit est visible.
+### ✅ Checkpoint : Vérifie le commit
+
+Sur GitHub, tu dois voir ton nouveau commit dans l'historique.
 
 ---
 
-## ✅ Objectif final
+## ✅ Validation finale (non noté)
 
-À la fin du TP, tu dois :
-- Avoir Flutter et VS Code correctement installés et configurés
-- Avoir créé et lancé ton premier projet Flutter
-- Comprendre la structure de base d'un projet
-- Avoir créé un "Hello World" personnalisé
-- Avoir configuré Git et créé un dépôt GitHub
-- Avoir poussé ton code sur GitHub
+Pour valider ce TP0, tu dois avoir :
+- ✅ Flutter installé (`flutter doctor` fonctionne)
+- ✅ VS Code avec l'extension Flutter
+- ✅ Un projet Flutter qui se lance avec ton prénom
+- ✅ Un dépôt GitHub avec au moins 2 commits
 
 ---
 
-## ✅ Validation (non noté)
-
-Pour valider ce TP0, assure-toi que tu as :
-- ✅ Flutter installé et `flutter doctor` fonctionne
-- ✅ VS Code configuré avec les extensions Flutter et Dart
-- ✅ Créé et lancé ton premier projet Flutter
-- ✅ Modifié le code pour afficher ton prénom
-- ✅ Configuré Git avec ton nom et email
-- ✅ Créé un dépôt GitHub et poussé ton code
-- ✅ Au moins 2 commits avec des messages clairs
-
-**Ce TP n'est pas noté** mais est **obligatoire** pour suivre les TPs suivants. Il pose les bases essentielles pour tous les projets à venir.
-
----
-
-## 💡 Conseils
-
-### Pour Flutter
-- **Hot Reload** : Sauvegarde régulièrement pour voir les changements instantanément (r dans le terminal)
-- **Hot Restart** : Si hot reload ne suffit pas, fais un restart complet (Shift+R ou R dans le terminal)
-- **Debug Console** : Vérifie toujours la console pour les erreurs
-- **Flutter Doctor** : Lance `flutter doctor` régulièrement pour vérifier ton installation
-
-### Pour Git
-- **Commits réguliers** : Fais des petits commits fréquents plutôt qu'un gros à la fin
-- **Messages clairs** : Utilise des messages descriptifs (ex: "ajout du bouton", "correction couleur")
-- **gitignore** : Ne commite jamais les dossiers `build/`, `.dart_tool/`, etc.
-
----
-
-## 🔧 Dépannage
+## 🔧 Dépannage rapide
 
 ### Flutter doctor affiche des erreurs
-- **Android toolchain** : Installe Android Studio et accepte les licences avec `flutter doctor --android-licenses`
-- **Xcode** (macOS uniquement) : Installe Xcode depuis l'App Store
-- **cmdline-tools** : Dans Android Studio > Settings > Android SDK > SDK Tools > Coche "Android SDK Command-line Tools"
+- **Android toolchain** : Lance `flutter doctor --android-licenses` pour accepter les licences
+- **cmdline-tools** : Dans Android Studio → Settings → Android SDK → SDK Tools → Coche "Android SDK Command-line Tools"
+
+### L'émulateur Android ne démarre pas
+- Vérifie que la virtualisation est activée dans le BIOS (Windows)
+- Relance Android Studio et ouvre Device Manager
+- Essaie de créer un nouvel émulateur avec une image système plus récente
 
 ### L'application ne se lance pas
 - Vérifie qu'un device est sélectionné : `flutter devices`
-- Essaie de lancer en ligne de commande : `flutter run`
-- Vérifie qu'il n'y a pas d'erreurs de syntaxe dans le code
-
-### Git push échoue
-- Vérifie que tu as bien configuré ton remote : `git remote -v`
-- Authentifie-toi sur GitHub (utilise un token personnel si nécessaire)
-- Vérifie que tu as les droits sur le repository
-
-### Hot reload ne fonctionne pas
-- Fais un Hot Restart avec `R` dans le terminal
-- Redémarre complètement l'application
-- Vérifie qu'il n'y a pas d'erreurs de compilation
+- Si tu utilises l'émulateur, assure-toi qu'il est bien lancé
+- Essaie de lancer avec : `flutter run -d chrome` ou `flutter run -d <device-id>`
 
 ---
 
 ## 📚 Ressources utiles
 
 - **Documentation Flutter** : https://docs.flutter.dev/
-- **Flutter Codelabs** : https://docs.flutter.dev/codelabs
-- **Git Cheat Sheet** : https://education.github.com/git-cheat-sheet-education.pdf
 - **Dart Language Tour** : https://dart.dev/guides/language/language-tour
 - **Widget Catalog** : https://docs.flutter.dev/ui/widgets
 
@@ -451,6 +288,4 @@ Pour valider ce TP0, assure-toi que tu as :
 
 ## 🎉 Félicitations !
 
-Tu as configuré ton environnement de développement Flutter et créé ton premier projet !
-
-Tu es maintenant prêt à attaquer les TPs suivants où tu vas créer de vraies applications Flutter. 🚀
+Tu es maintenant prêt à attaquer les TPs suivants ! 🚀

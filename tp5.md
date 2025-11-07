@@ -7,13 +7,13 @@
 - Travailler en équipe avec Git
 - Produire une application fonctionnelle et/ou esthétique selon vos objectifs
 
-🕐 **Durée estimée : 6 à 8 heures** (sur 2 séances minimum)
+🕐 **Durée estimée : +4h** (sur 2 séances minimum)
 
 ---
 
 ## 👥 Organisation
 
-- **Travail en binôme obligatoire**
+- **Travail en binôme**
 - **Dépôt GitHub** : Le projet doit être hébergé sur GitHub avec historique des commits des deux membres
 - **Choix libre du sujet** : Vous êtes libres de choisir le thème de votre application (réseau social, e-commerce, productivité, jeu, etc.)
 - **Choix d'orientation** : Vous devez choisir une des trois orientations ci-dessous
@@ -33,13 +33,16 @@ Votre application doit respecter **TOUTES** les contraintes suivantes :
 - ✅ Intégration d'**au moins un package** de pub.dev (hors stockage) pertinent pour votre métier
 - ✅ Consommation d'**une API** (publique ou créée par vous)
 
-**Exemples de projets** :
-- Application de suivi budgétaire avec catégories, graphiques et export
-- Gestionnaire de tâches avec notifications, priorités et récurrence
-- Application de fitness avec suivi des entraînements et statistiques
-- Agrégateur de news avec sauvegarde d'articles et recherche
+> **💡 Pourquoi cette option ?**
+> Si vous aimez la logique, les algorithmes et résoudre des problèmes techniques complexes, cette option est pour vous. Vous allez créer une app avec une vraie "intelligence" métier (calculs, traitements de données, workflows), pas juste afficher des listes. Le design peut rester simple.
 
-**Packages suggérés** : `charts_flutter`, `flutter_local_notifications`, `sqflite`, `provider`/`riverpod`, `intl`
+### 💡 Besoin d'inspiration ? 5 idées de projets fonctionnels
+
+1. **Gestionnaire de budget personnel** - Suivi des dépenses par catégorie, graphiques, export PDF, API de conversion de devises
+2. **Application de suivi d'habitudes** - Création d'habitudes, système de streaks, statistiques, notifications de rappel
+3. **Gestionnaire de recettes avec liste de courses** - Base de données de recettes, calcul de quantités, génération automatique de liste, API spoonacular
+4. **App de révision avec flashcards** - Système de répétition espacée (SM-2), catégories, statistiques, import/export
+5. **Gestionnaire de bibliothèque personnelle** - Scan ISBN, suivi de lecture, statistiques annuelles, API Open Library
 
 ---
 
@@ -52,13 +55,16 @@ Votre application doit respecter **TOUTES** les contraintes suivantes :
 - ✅ Mise en place de **i18n** (internationalisation) avec au moins 2 langues
 - ✅ Intégration d'**au moins une animation** (Hero, AnimatedContainer, Lottie, etc.)
 
-**Exemples de projets** :
-- Application de galerie photo avec transitions animées
-- Portfolio interactif avec animations et multilingue
-- Application de recettes avec design soigné et animations
-- Onboarding moderne avec animations et changement de langue
+> **💡 Pourquoi cette option ?**
+> Si vous aimez le design, les belles interfaces et l'expérience utilisateur, cette option est idéale. Vous allez reproduire un design pro de Dribbble et le rendre vivant avec des animations. La logique métier peut rester basique (affichage de listes, navigation simple).
 
-**Packages suggérés** : `flutter_localizations`, `lottie`, `animations`, `google_fonts`, `cached_network_image`
+### 💡 Besoin d'inspiration ? 5 idées de projets design
+
+1. **Portfolio créatif animé** - Présentation de projets avec Hero animations, transitions fluides, mode sombre/clair, multilingue
+2. **Application de méditation** - Design zen avec animations Lottie, sons d'ambiance, timer personnalisable, i18n FR/EN
+3. **Galerie d'art moderne** - Grille/liste de photos, zoom animé, filtres par catégorie, transitions Hero entre vues
+4. **App de mode/lookbook** - Catalogues de vêtements, carousel animé, filtres visuels, changement de langue dynamique
+5. **Journal intime visuel** - Design élégant avec animations d'écriture, thèmes personnalisables, photos, i18n
 
 ---
 
@@ -69,10 +75,16 @@ Votre application doit respecter :
 - ✅ **Au moins 2 contraintes** de l'option "Riche en fonctionnel"
 - ✅ **Au moins 2 contraintes** de l'option "Riche en design"
 
-**Exemples de projets** :
-- Application météo avec API, stockage des villes favorites, design soigné et animations
-- App de streaming musical avec API, design Dribbble, animations et i18n
-- Réseau social minimaliste avec Firebase, design moderne, animations et images
+> **💡 Pourquoi cette option ?**
+> C'est l'option "tout terrain" pour ceux qui veulent un bon équilibre. Vous aurez une app fonctionnelle ET jolie, sans aller à l'extrême dans l'un ou l'autre. Idéal pour un profil généraliste ou si vous êtes deux avec des compétences complémentaires (un dev, un designer).
+
+### 💡 Besoin d'inspiration ? 5 idées de projets équilibrés
+
+1. **Application météo complète** - API OpenWeather, stockage favoris local, design animé avec icônes Lottie, mode sombre, multilingue
+2. **App de streaming musical** - API Spotify/Deezer, player avec animations, playlists sauvegardées, design moderne, i18n
+3. **Réseau social de photos** - Firebase pour stockage, timeline avec animations, filtres, likes/commentaires, design inspiré Instagram
+4. **Application de voyage/exploration** - API Google Places ou TripAdvisor, sauvegarde des destinations favorites, design moderne avec maps animées, filtres par catégorie, multilingue
+5. **App de fitness tracker** - Stockage local des entraînements, graphiques de progression, design motivant avec animations, API nutrition
 
 ---
 
@@ -105,18 +117,11 @@ Votre README doit contenir :
 - [ ] Contrainte 3
 - [ ] Contrainte 4
 
-## 📦 Packages utilisés
-- package_name: ^version (raison d'utilisation)
-- package_name: ^version (raison d'utilisation)
-
 ## 🚀 Installation
 [Instructions pour lancer le projet]
 
 ## 📸 Screenshots
 [3-5 captures d'écran de l'application]
-
-## 🏗️ Architecture
-[Brève description de l'organisation du code]
 
 ## 🎨 Design (si applicable)
 [Lien vers le template Dribbble utilisé]
@@ -146,6 +151,15 @@ Votre README doit contenir :
 ### 5. **Revue de code entre membres du binôme**
 Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
+> **💡 Pourquoi les code reviews ?**
+> Les **code reviews** sont une pratique pro essentielle : un autre développeur lit ton code avant de l'intégrer. Ça permet de :
+> - Détecter des bugs tôt
+> - Partager les connaissances dans l'équipe
+> - Améliorer la qualité du code
+> - S'assurer que tout le monde comprend le code
+>
+> C'est un peu comme une relecture avant de publier un article !
+
 **Comment procéder** :
 1. Chaque membre travaille sur sa branche (`feature/login`, `feature/home`, etc.)
 2. Avant de merger dans `main`, créer une **Pull Request**
@@ -174,32 +188,7 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 | **Originalité et ambition** | Innovation, complexité du projet, features supplémentaires | 2 |
 | **Vidéo de démo** | Présentation claire, exhaustive et professionnelle | 1 |
 | **Total** |  | **/20** |
-
----
-
-## 📅 Planning recommandé
-
-### Séance 1 (2-3h)
-- [ ] Former les binômes
-- [ ] Choisir l'orientation et le sujet
-- [ ] Créer le dépôt GitHub et inviter le binôme
-- [ ] Définir les fonctionnalités principales
-- [ ] Créer la structure du projet
-- [ ] Répartir les tâches (qui fait quoi)
-- [ ] Commencer l'implémentation
-
-### Séance 2 (2-3h)
-- [ ] Continuer l'implémentation des features
-- [ ] Intégrer le travail des deux membres
-- [ ] Résoudre les conflits Git éventuels
-- [ ] Tester l'application
-
-### Séance 3 (2h)
-- [ ] Finaliser les fonctionnalités
-- [ ] Peaufiner le design
-- [ ] Rédiger le README
-- [ ] Enregistrer la vidéo de démo
-- [ ] Vérifier que toutes les contraintes sont respectées
+| **Tests (BONUS)** | Tests unitaires et/ou widgets significatifs (min 5 tests) | +2 |
 
 ---
 
@@ -213,7 +202,6 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
 ### Organisation du code
 - Définissez l'architecture ensemble dès le début
-- Créez des **fichiers de constantes** pour les couleurs, styles, API keys
 - Utilisez des **widgets réutilisables** plutôt que de dupliquer du code
 - Commentez les parties complexes
 
@@ -238,7 +226,7 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
 ## ⚠️ Pièges à éviter
 
-- ❌ **Commits déséquilibrés** : Un membre fait tout le travail
+- ❌ **Commits déséquilibrés** : Un membre fait tout le travail (ca se verra si c'est trop déséquilibré)
 - ❌ **Pas de commits** : Tout le code est pushé d'un coup à la fin
 - ❌ **Clés API commitées** : Utilisez `.gitignore` et des fichiers d'exemple
 - ❌ **App qui ne build pas** : Testez régulièrement sur différents devices
@@ -248,23 +236,7 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
 ---
 
-## 🎓 Critères d'excellence
-
-Pour viser les meilleures notes :
-- ✨ Code propre et bien architecturé (SOLID, DRY)
-- ✨ Gestion d'erreurs robuste (try-catch, états d'erreur UI)
-- ✨ UX fluide avec loaders et feedbacks visuels
-- ✨ Responsive design (fonctionne sur tablette et téléphone)
-- ✨ Pas de warnings dans la console
-- ✨ README avec screenshots et GIFs
-- ✨ Commits atomiques avec messages descriptifs
-- ✨ Code review entre membres du binôme visible sur GitHub
-
----
-
 ## 📤 Modalités de rendu
-
-**Date limite** : [À définir par l'enseignant]
 
 **Format du rendu** :
 1. Lien vers le **repository GitHub** (déposé sur Moodle ou par email)
@@ -275,7 +247,6 @@ Pour viser les meilleures notes :
 - [ ] Le dépôt est accessible (public ou accès donné)
 - [ ] Le README est complet
 - [ ] L'application builde et run sans erreur
-- [ ] Les deux membres ont au moins 40% des commits chacun
 - [ ] Au moins 3 Pull Requests reviewées par membre sont visibles
 - [ ] Toutes les contraintes de l'orientation choisie sont respectées
 - [ ] La vidéo est accessible et complète

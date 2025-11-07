@@ -26,6 +26,9 @@
      url_launcher: ^6.1.10
      share_plus: ^6.3.0
    ```
+
+   > **💡 Pourquoi ?** Le fichier `pubspec.yaml` est comme le "gestionnaire de courses" de ton projet. Il liste tous les packages externes dont tu as besoin. `url_launcher` permet d'ouvrir des liens (LinkedIn, sites web), et `share_plus` permet de partager du contenu depuis ton app.
+
 4. Mets à jour ton projet :
    ```bash
    flutter pub get
@@ -119,6 +122,11 @@ body: SingleChildScrollView(
 ),
 ```
 
+> **💡 Pourquoi ces widgets ?**
+> - **SingleChildScrollView** : Permet de scroller si le contenu dépasse l'écran (évite les erreurs d'overflow)
+> - **Stack** : Empile des widgets les uns sur les autres (comme des calques Photoshop). Ici, l'avatar est posé PAR-DESSUS l'image de couverture
+> - **Positioned** : Contrôle précisément où placer un widget dans un Stack (ici `bottom: -40` fait déborder l'avatar vers le bas)
+
 ✅ Tu dois maintenant voir une image de couverture et ton avatar au centre.
 
 ---
@@ -173,6 +181,9 @@ Row(
 ),
 ```
 
+> **💡 Pourquoi `onPressed: () { ... }` ?**
+> C'est une **fonction anonyme** (ou lambda). En Dart, `onPressed` attend une fonction à exécuter quand on clique. Les `() { }` créent une fonction "à la volée" sans avoir besoin de la nommer. C'est comme dire : "Quand on clique, fais ça".
+
 ✅ Tester que les icônes réagissent au clic.
 
 ---
@@ -199,6 +210,10 @@ SizedBox(
 ),
 ```
 
+> **💡 Pourquoi ListView ?**
+> - **ListView** crée une liste scrollable automatiquement. Avec `scrollDirection: Axis.horizontal`, elle devient horizontale (comme les stories Instagram)
+> - C'est mieux que `Row` car avec Row, si tu as beaucoup d'éléments, ils dépasseront de l'écran et causeront une erreur
+
 et crée cette fonction au-dessus de la classe `ProfilePage` :
 
 ```dart
@@ -221,6 +236,101 @@ Widget projectCard(String image, String title) {
 ```
 
 ✅ Tu dois pouvoir faire défiler tes projets horizontalement.
+
+---
+
+## 🪜 Étape 7 — Améliorer avec le passage de données entre widgets
+
+Pour rendre ton code plus propre et réutilisable, transformons la fonction `projectCard` en un vrai widget personnalisé qui reçoit des données.
+
+### Créer un widget personnalisé
+
+Au lieu d'une simple fonction, crée une nouvelle classe `ProjectCard` :
+
+```dart
+class ProjectCard extends StatelessWidget {
+  final String image;
+  final String title;
+  final String? description; // Optionnel
+
+  const ProjectCard({
+    super.key,
+    required this.image,
+    required this.title,
+    this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 140,
+      child: Card(
+        child: Column(
+          children: [
+            Image.asset(image, height: 90, width: 140, fit: BoxFit.cover),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  if (description != null)
+                    Text(
+                      description!,
+                      style: TextStyle(fontSize: 10, color: Colors.grey[600]),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+### Utiliser le widget personnalisé
+
+Maintenant, remplace les appels à `projectCard()` par :
+
+```dart
+children: [
+  ProjectCard(
+    image: 'assets/images/projet1.jpg',
+    title: 'Projet 1',
+    description: 'Application mobile',
+  ),
+  ProjectCard(
+    image: 'assets/images/projet2.jpg',
+    title: 'Projet 2',
+    description: 'Site web responsive',
+  ),
+  ProjectCard(
+    image: 'assets/images/projet3.jpg',
+    title: 'Projet 3',
+  ),
+],
+```
+
+> **💡 Passage de données entre widgets - Concepts clés :**
+> - **Constructor parameters** : Les widgets reçoivent des données via leur constructeur (comme `image`, `title`)
+> - **required** : Indique qu'un paramètre est obligatoire. Sans ça, l'app ne compile pas.
+> - **final** : Les variables d'un widget sont immuables (ne changent jamais). C'est une règle de Flutter.
+> - **`?` (nullable)** : `String?` signifie que `description` peut être null (optionnel). Si null, on ne l'affiche pas.
+> - **`!` (null assertion)** : `description!` dit à Dart "je suis sûr que ce n'est pas null ici". Utilisé après avoir vérifié avec `if (description != null)`.
+>
+> **Avantages des widgets personnalisés** :
+> - **Réutilisabilité** : Tu peux utiliser `ProjectCard` partout dans ton app
+> - **Lisibilité** : Le code est plus clair et organisé
+> - **Maintenance** : Si tu veux changer l'apparence des cartes, tu modifies un seul endroit
+> - **Type safety** : Flutter vérifie que tu passes les bonnes données au bon moment
+
+✅ Ton code est maintenant plus professionnel et réutilisable !
 
 ---
 
