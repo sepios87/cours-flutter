@@ -207,7 +207,15 @@ Inspire-toi des guidelines Material Design !
 ---
 
 ## 💡 Conseils
-- Commence simple, vérifie que la logique fonctionne avant d’ajouter du style.  
-- Si ton quiz plante, affiche des `print()` pour suivre les valeurs.  
-- Découpe ton code en widgets pour plus de clarté (`QuestionWidget`, `AnswerButton`, etc.).  
+- Commence simple, vérifie que la logique fonctionne avant d'ajouter du style.
+- Si ton quiz plante, affiche des `print()` pour suivre les valeurs.
+- Découpe ton code en widgets pour plus de clarté (`QuestionWidget`, `AnswerButton`, etc.).
 - Si tu veux aller plus loin : transforme le quiz en un mini-jeu à thèmes (culture, cinéma, dev...).
+
+### 📚 Aller plus loin : Quand dépasser `setState()` ?
+Dans ce TP, `setState()` est parfait pour gérer l'état local simple (score, question actuelle). Mais il montre ses limites quand :
+- Tu dois partager des données entre plusieurs pages (ex : score accessible partout)
+- Ton état devient complexe avec beaucoup de variables interdépendantes
+- Tu veux séparer la logique métier de l'interface
+
+Pour des applications plus grandes, explore des solutions de gestion d'état comme **Provider**, **Riverpod** ou **Bloc**. Mais pour ce TP, `setState()` reste le bon choix !

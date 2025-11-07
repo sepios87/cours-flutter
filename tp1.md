@@ -258,8 +258,12 @@ Widget projectCard(String image, String title) {
 | **Total** |  | **/20 + 2 bonus** |
 
 ### 🎁 Bonus (+2 points possibles)
-1. Thème global (`ThemeData`) bien
-2. Fonction de partage fonctionnelle
+
+#### Bonus 1 : Thème personnalisé complet (+1 point)
+Créer un thème global cohérent avec `ThemeData` personnalisé (couleurs, typographie, styles de composants).
+
+#### Bonus 2 : Partage d'image (+1 point)
+Modifier le bouton de partage pour partager une image depuis les assets (une capture d'écran de ton profil) avec `share_plus`.
 
 ---
 

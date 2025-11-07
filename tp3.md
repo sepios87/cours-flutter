@@ -1,10 +1,11 @@
-# 🧱 TP3 – Liste de films avec favoris (JSON local ou API)
+# 🧱 TP3 – Liste de films avec favoris (JSON local)
 
 ## 🎯 Objectifs
-- Charger et afficher des données dynamiques (JSON local ou API)  
-- Utiliser des widgets de liste (`ListView`, `ListTile`, `GridView`)  
+- Charger et afficher des données dynamiques depuis un JSON local
+- Utiliser des widgets de liste (`ListView`, `ListTile`, `GridView`)
 - Gérer des favoris localement
-- Structurer son code en plusieurs fichiers  
+- Structurer son code en plusieurs fichiers
+- Découvrir les tests unitaires en Flutter  
 
 🕐 **Durée estimée : 2 à 3 heures**
 
@@ -18,18 +19,11 @@
    cd tp3_nom_prenom
    ```
 2. Ouvre le dossier dans VS Code ou Android Studio.  
-3. Ajoute ces dépendances dans `pubspec.yaml` :
-   ```yaml
-   dependencies:
-     flutter:
-       sdk: flutter
-     http: ^1.1.0
-   ```
-4. Mets à jour les packages :
+3. Mets à jour les packages :
    ```bash
    flutter pub get
    ```
-5. Crée un dossier `assets/data/` et ajoute un fichier `movies.json` :
+4. Crée un dossier `assets/data/` et ajoute un fichier `movies.json` :
    ```json
    [
      {
@@ -49,7 +43,7 @@
      }
    ]
    ```
-6. Déclare les assets dans `pubspec.yaml` :
+5. Déclare les assets dans `pubspec.yaml` :
    ```yaml
    flutter:
      assets:
@@ -83,7 +77,7 @@ class Movie {
 }
 
 class MovieService {
-  static Future<List<Movie>> loadLocalMovies() async {
+  Future<List<Movie>> loadLocalMovies() async {
     final data = await rootBundle.loadString('assets/data/movies.json');
     final List<dynamic> jsonList = json.decode(data);
     return jsonList.map((json) => Movie.fromJson(json)).toList();
@@ -119,7 +113,7 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 
   Future<void> _loadMovies() async {
-    final loadedMovies = await MovieService.loadLocalMovies();
+    final loadedMovies = await movieService.loadLocalMovies();
     setState(() {
       movies = loadedMovies;
     });
@@ -235,6 +229,10 @@ Et enfin ton `main.dart` :
 ```dart
 import 'package:flutter/material.dart';
 import 'movie_list_page.dart';
+import 'service/movie_service.dart';
+
+// Instance globale du service (Singleton)
+final movieService = MovieService();
 
 void main() => runApp(const MyApp());
 
@@ -304,13 +302,31 @@ Quelques idées :
 ---
 
 ### 🎁 Bonus (+2 points possibles)
-1. Charger les films depuis une **API publique** (par ex. [The Movie Database – TMDB API](https://developer.themoviedb.org/reference/discover-movie))  
-2. Ajouter un **système de tri** (par année, titre ou popularité)
+
+#### Bonus 1 : Tests unitaires pour MovieService (+1 point)
+Créer un fichier `test/movie_service_test.dart` et écrire au moins 3 tests unitaires qui vérifient :
+- Le chargement correct des données depuis le JSON
+- Le parsing et la conversion en objets `Movie`
+- Le nombre de films retournés correspond au JSON
+
+#### Bonus 2 : GridView avec plusieurs modes d'affichage (+1 point)
+Ajouter un bouton dans l'AppBar pour basculer entre deux modes d'affichage :
+- Mode Liste (`ListView`) : affichage actuel
+- Mode Grille (`GridView.builder`) : affichage en grille 2 colonnes avec cartes visuelles
 
 ---
 
 ## 💡 Conseils
-- Teste ton app sur plusieurs tailles d’écran.  
-- Utilise `FutureBuilder` si tu veux afficher le chargement plus proprement.  
-- Si tu passes à une API, n’oublie pas `http.get(Uri.parse(...))` et de gérer les erreurs réseau.  
-- Garde ton code propre et bien séparé : c’est le début d’une vraie architecture Flutter !  
+- Teste ton app sur plusieurs tailles d'écran.
+- Utilise `FutureBuilder` si tu veux afficher le chargement plus proprement.
+- Ajoute plus de films dans ton JSON pour tester le scroll et les performances.
+- Garde ton code propre et bien séparé : c'est le début d'une vraie architecture Flutter !
+- Pour les bonus tests, lance `flutter test` dans ton terminal pour exécuter tes tests unitaires.
+
+### 🏗️ Architecture : Instance globale du service
+Dans ce TP, `movieService` est définie comme une **instance globale** au niveau du `main.dart`. Cela garantit qu'une seule instance du service existe dans toute l'application. C'est une bonne pratique car :
+- Facilite les tests unitaires (on peut remplacer l'instance)
+- Permet d'ajouter facilement du cache ou de la configuration
+- Prépare le terrain pour évoluer vers une API sans tout réécrire
+
+C'est mieux que des méthodes `static` qui sont difficiles à tester et à étendre !  
