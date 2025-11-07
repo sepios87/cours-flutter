@@ -60,7 +60,7 @@
 
 ## 🪜 Étape 2 — Charger les données du JSON
 
-Crée un fichier `lib/movie_service.dart` :
+Crée un fichier `lib/service/movie_service.dart` :
 
 ```dart
 import 'dart:convert';
@@ -99,7 +99,7 @@ Crée un fichier `lib/movie_list_page.dart` :
 
 ```dart
 import 'package:flutter/material.dart';
-import 'movie_service.dart';
+import 'service/movie_service.dart';
 
 class MovieListPage extends StatefulWidget {
   const MovieListPage({super.key});

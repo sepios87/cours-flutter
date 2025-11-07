@@ -6,38 +6,11 @@
 - Implémenter un **tri dynamique** (par nom, difficulté ou durée)  
 - Structurer un projet Flutter modulaire et réutilisable  
 
-🕐 **Durée estimée : 4 à 5 heures**
+🕐 **Durée estimée : 2 à 3 heures**
 
 ---
 
-## 🪜 Étape 1 — Créer le projet
-
-1. Dans ton terminal :
-   ```bash
-   flutter create tp4_nom_prenom
-   cd tp4_nom_prenom
-   ```
-2. Ouvre ton projet dans VS Code ou Android Studio.  
-3. Aucune dépendance externe n’est requise pour ce TP.  
-4. Crée les dossiers suivants :
-   ```
-   lib/
-     models/
-     pages/
-     widgets/
-   assets/images/
-   ```
-5. Ajoute quelques images dans `assets/images/` (photos de plats par exemple).  
-6. Déclare-les dans ton `pubspec.yaml` :
-   ```yaml
-   flutter:
-     assets:
-       - assets/images/
-   ```
-
----
-
-## 🪜 Étape 2 — Créer le modèle de données
+## 🪜 Étape 1 — Créer le modèle de données
 
 Dans `lib/models/recipe.dart`, crée une classe `Recipe` :
 
@@ -72,14 +45,6 @@ final List<Recipe> recipes = [
     difficulty: 'Facile',
   ),
   Recipe(
-    title: 'Poulet curry coco',
-    image: 'assets/images/curry.jpg',
-    description:
-        'Un délicieux mélange de curry et de lait de coco pour un goût exotique.',
-    duration: 35,
-    difficulty: 'Moyenne',
-  ),
-  Recipe(
     title: 'Tiramisu maison',
     image: 'assets/images/tiramisu.jpg',
     description:
@@ -92,7 +57,7 @@ final List<Recipe> recipes = [
 
 ---
 
-## 🪜 Étape 3 — Afficher la liste des recettes
+## 🪜 Étape 2 — Afficher la liste des recettes
 
 Dans `lib/pages/recipe_list_page.dart` :
 
@@ -172,7 +137,7 @@ class _RecipeListPageState extends State<RecipeListPage> {
 
 ---
 
-## 🪜 Étape 4 — Créer la page de détails
+## 🪜 Étape 3 — Créer la page de détails
 
 Dans `lib/pages/recipe_detail_page.dart` :
 
@@ -226,7 +191,7 @@ class RecipeDetailPage extends StatelessWidget {
 
 ---
 
-## 🪜 Étape 5 — Point d’entrée de l’application
+## 🪜 Étape 4 — Point d’entrée de l’application
 
 Dans `lib/main.dart` :
 

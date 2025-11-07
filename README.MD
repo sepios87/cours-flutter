@@ -1,7 +1,9 @@
 # 📘 Guide – Structure des TPs Flutter
 
-Ce document explique **comment seront organisés tous les TPs Flutter** du module.  
+Bienvenue dans l'arène ! Ce document explique **comment seront organisés tous les TPs Flutter** du module.
 Chaque TP suit une structure identique pour vous permettre de progresser étape par étape vers un projet complet.
+
+**Spoiler alert** : À la fin de ce module, vous serez capables de build votre propre app. Oui oui, une vraie.
 
 ---
 
@@ -14,24 +16,24 @@ Exemple :
 ```markdown
 # 🧱 TP1 – Carte de profil interactive
 ```
-Le titre indique le numéro du TP et le sujet.  
-Une brève description et des **objectifs pédagogiques** vous indiquent ce que vous allez apprendre.
+Le titre indique le numéro du TP et le sujet (assez logique jusque là).
+Une brève description et des **objectifs pédagogiques** vous indiquent ce que vous allez apprendre (oui, vraiment apprendre, pas juste copier-coller).
 
 ---
 
 ### 2. **🎯 Objectifs**
 Cette section liste les **compétences et notions Flutter** travaillées :
 - Les widgets ou concepts abordés
-- Les fonctionnalités à mettre en place
-- L’objectif d’apprentissage global (UI, navigation, data, etc.)
+- Les fonctionnalités à mettre en place (ce qui va impressionner votre grand-mère)
+- L'objectif d'apprentissage global : UI, navigation, data, etc.
 
 ---
 
 ### 3. **🕐 Durée estimée**
-Indique le **temps moyen** prévu pour réaliser le TP.  
-Vous pouvez prendre plus ou moins de temps selon votre rythme.
+Indique le **temps moyen** prévu pour réaliser le TP.
+Vous pouvez prendre plus ou moins de temps selon votre rythme (et le nombre de cafés consommés).
 
-Chaque TP devra être rendu au début du TP suivant.
+Chaque TP devra être rendu au début du TP suivant. ⏰ Oui, c'est une deadline, pas une suggestion optimiste.
 
 ---
 
@@ -48,8 +50,8 @@ Chaque étape contient :
 ---
 
 ### 5. **✅ Objectif final**
-Cette partie résume **le rendu attendu à la fin du TP** :  
-quelles fonctionnalités doivent être présentes et ce que l’application doit faire.
+Cette partie résume **le rendu attendu à la fin du TP** (la ligne d'arrivée, le graal, le moment où vous pourrez enfin souffler) :
+quelles fonctionnalités doivent être présentes et ce que l'application doit faire.
 
 ---
 
@@ -62,23 +64,25 @@ Cette section indique :
 ---
 
 ### 7. **🧮 Barème de notation**
-Chaque TP est noté sur **20 points**.  
-Le barème est présenté sous forme de tableau avec plusieurs critères d’évaluation en fonction du projet. Par exemple sur :
-- structure du projet  
-- respect des consignes techniques  
-- qualité du design  
-- interaction et fonctionnement  
-- créativité, propreté du code, etc.
+Chaque TP est noté sur **20 points** 
+Le barème est présenté sous forme de tableau avec plusieurs critères d'évaluation en fonction du projet. Par exemple sur :
+- structure du projet 
+- respect des consignes techniques 
+- qualité du design
+- interaction et fonctionnement
+- créativité, propreté du code, etc. (les variables `a`, `b`, `c` ne sont pas vos amies)
 
 ---
 
 ### 8. **🎁 Bonus**
-Chaque TP comporte **jusqu’à 2 points bonus**.  
-Ces bonus sont des **défis facultatifs** permettant d’aller plus loin.
+Chaque TP comporte **jusqu'à 2 points bonus**.  
+Ces bonus sont des **défis facultatifs** permettant d'aller plus loin (et de briller en société).
 
-> 💡 Les bonus **n’ont pas d’instructions détaillées** : ils sont volontairement ouverts.  
-> Vous devez chercher par vous-même comment les réaliser à partir des notions vues en cours ou à partir de recherches et de la documentation.  
-> Exemple : “Ajouter un mode sombre avec `ThemeData`” ou “Mettre en place un partage sur les réseaux”.
+> 💡 Les bonus **n'ont pas d'instructions détaillées** : ils sont volontairement ouverts (oui, c'est fait exprès).
+> Vous devez chercher par vous-même comment les réaliser à partir des notions vues en cours ou à partir de recherches et de la documentation.
+> C'est là qu'on sépare les ninjas des simples mortels.
+> Exemple : "Ajouter un mode sombre avec `ThemeData`" ou "Mettre en place un partage sur les réseaux".
+> Conseil de pro : Stack Overflow et la doc Flutter sont vos meilleurs alliés ici.
 
 ---
 
@@ -92,8 +96,8 @@ Ces bonus sont des **défis facultatifs** permettant d’aller plus loin.
 
 ## 🧰 Bonnes pratiques à suivre dans tous les TPs
 
-- Toujours nommer vos projets `tpX_nom_prenom`  
-- Bien commenter votre code pour expliquer vos choix  
-- Tester sur **un vrai téléphone** quand c’est possible  
-- Respecter la **structure Flutter standard** (`lib/`, `assets/`, etc.)  
-- Ne pas laisser de code inutilisé ou de variables non nommées clairement  
+- Toujours nommer vos projets `tpX_nom_prenom`
+- Bien commenter votre code pour expliquer vos choix (votre futur vous dans 2 semaines vous remerciera)
+- Tester sur **un vrai téléphone** quand c'est possible
+- Respecter la **structure Flutter standard** (`lib/`, `assets/`, etc.)
+- Ne pas laisser de code inutilisé ou de variables non nommées clairement
