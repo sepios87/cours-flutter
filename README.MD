@@ -132,11 +132,11 @@ Le module est organisé en **8 séances de 2h30** :
 
 | Séance | Contenu | Description |
 |--------|---------|-------------|
-| **Séance 1** | TP0 + début TP1 | Installation et configuration de l'environnement + introduction aux concepts de base |
-| **Séance 2** | Fin TP1 + rendu | Finalisation de la carte de profil interactive et rendu du TP1 |
-| **Séance 3** | TP2 complet | Navigation et gestion d'état |
-| **Séance 4** | TP3 complet | Formulaires et stockage local |
-| **Séance 5** | TP4 complet | Consommation d'API et affichage de données |
+| **Séance 1** | Présentation + TP0 | Installation et configuration de l'environnement |
+| **Séance 2** | TP1 | Introduction aux concepts de base |
+| **Séance 3** | TP2 | Navigation et gestion d'état |
+| **Séance 4** | TP3 | Formulaires et stockage local |
+| **Séance 5** | TP4 | Consommation d'API et affichage de données |
 | **Séances 6-7** | TP5 - Développement projet | Travail sur le projet final en binôme |
 | **Séance 8** | TP5 - Finalisation + démo | Dernières touches et présentation des projets finaux |
 
