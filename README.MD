@@ -128,7 +128,7 @@ Chaque séance de TP suit le déroulé suivant :
 
 ## 📆 Planning des séances
 
-Le module est organisé en **8 séances de 2h30** :
+Le module est organisé en **7 séances d'environ 2h30 (soit 17h30)** :
 
 | Séance | Contenu | Description |
 |--------|---------|-------------|
@@ -137,8 +137,8 @@ Le module est organisé en **8 séances de 2h30** :
 | **Séance 3** | TP2 | Navigation et gestion d'état |
 | **Séance 4** | TP3 | Formulaires et stockage local |
 | **Séance 5** | TP4 | Consommation d'API et affichage de données |
-| **Séances 6-7** | TP5 - Développement projet | Travail sur le projet final en binôme |
-| **Séance 8** | TP5 - Finalisation + démo | Dernières touches et présentation des projets finaux |
+| **Séances 6** | TP5 - Développement projet | Travail sur le projet final en binôme |
+| **Séance 7** | TP5 - Finalisation + démo | Dernières touches et présentation des projets finaux |
 
 > 💡 **Rappel** : Chaque TP doit être rendu au début de la séance suivante. Organisez-vous en conséquence !
 
