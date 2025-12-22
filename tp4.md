@@ -499,7 +499,7 @@ class MyApp extends StatelessWidget {
 
 - Projet Flutter complet nommé : **`tp4_nom_prenom`**
 - Une capture d'écran de la liste et une du détail d'un film
-- Lien GitHub ou archive ZIP
+- Lien GitHub
 - **Important** : Ne commite PAS ta clé API ! Utilise un fichier `.env` ou laisse une instruction pour l'ajouter
 
 ---

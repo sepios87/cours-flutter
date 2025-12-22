@@ -72,6 +72,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+```
+
+> **💡 Pourquoi `const` partout ?**
+> Le mot-clé **`const`** indique à Flutter que ce widget ne changera jamais. Flutter peut alors le réutiliser au lieu d'en créer un nouveau à chaque reconstruction de l'interface. Résultat : ton app est plus rapide et consomme moins de mémoire. Utilise `const` dès que possible !
+
+```dart
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -128,6 +134,18 @@ body: SingleChildScrollView(
 > - **Positioned** : Contrôle précisément où placer un widget dans un Stack (ici `bottom: -40` fait déborder l'avatar vers le bas)
 
 ✅ Tu dois maintenant voir une image de couverture et ton avatar au centre.
+
+> **💡 Astuce : Gérer les erreurs d'images**
+> Si tes images ne s'affichent pas (mauvais chemin, fichier manquant), pense à vérifier :
+> - Que le fichier existe bien dans `assets/images/`
+> - Que le chemin dans `pubspec.yaml` est correct : `- assets/images/`
+> - Pour les images réseau, utilise `errorBuilder` pour afficher un fallback :
+> ```dart
+> Image.network(
+>   'url/de/image.jpg',
+>   errorBuilder: (_, __, ___) => const Icon(Icons.image, size: 50),
+> )
+> ```
 
 ---
 

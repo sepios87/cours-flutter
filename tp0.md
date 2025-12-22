@@ -44,6 +44,8 @@ Tu dois voir :
 **❌ Si `[✗] Flutter` :** Reprends l'installation et vérifie le PATH
 **⚠️ Si `[!]` :** C'est normal, continue !
 
+![flutter doctor](./img/flutter_doctor.png)
+
 ---
 
 ## 🪜 Étape 2 — Installer VS Code
@@ -52,9 +54,11 @@ Tu dois voir :
 2. Installe l'extension **Flutter** (Ctrl+Shift+X ou Cmd+Shift+X)
    - L'extension Dart s'installera automatiquement
 
+![vs code flutter](./img/flutter_vscode.png)
+
 ---
 
-## 🪜 Étape 3 — Installer Android Studio (optionnel mais recommandé)
+## 🪜 Étape 3 — Installer Android Studio (utile pour les commandes adb)
 
 Android Studio permet de lancer l'application sur un émulateur Android.
 
@@ -121,7 +125,7 @@ Tu dois voir une application avec un compteur qui s'incrémente quand tu cliques
 
 ---
 
-## 🪜 Étape 5 — Créer un "Hello World" personnalisé
+## 🪜 Étape 5 — Créer un "Hello World"
 
 Remplace tout le contenu de `lib/main.dart` par :
 
@@ -225,12 +229,6 @@ git remote add origin https://github.com/ton-username/tp0-prenom-nom.git
 git branch -M main
 git push -u origin main
 ```
-
-### ✅ Checkpoint : Vérifie GitHub
-
-Rafraîchis la page GitHub : ton code doit apparaître !
-
-**❌ Si erreur d'authentification :** Tu dois créer un Personal Access Token sur GitHub
 
 ---
 

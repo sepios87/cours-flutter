@@ -33,7 +33,7 @@ Cette section liste les **compétences et notions Flutter** travaillées :
 Indique le **temps moyen** prévu pour réaliser le TP.
 Vous pouvez prendre plus ou moins de temps selon votre rythme (et le nombre de cafés consommés).
 
-Chaque TP devra être rendu au début du TP suivant. ⏰ Oui, c'est une deadline, pas une suggestion optimiste.
+Chaque TP devra être rendu au début du TP de la semaine suivante. ⏰ Oui, c'est une deadline, pas une suggestion optimiste.
 
 ---
 
@@ -59,7 +59,7 @@ quelles fonctionnalités doivent être présentes et ce que l'application doit f
 Cette section indique :
 - le **nom du projet Flutter** à rendre (ex : `tp1_nom_prenom`)
 - les **fichiers ou captures** à déposer (souvent une capture d’écran + projet complet)
-- le **format du rendu** (GitHub, Moodle, archive ZIP, etc.)
+- le **format du rendu** (GitHub)
 
 ---
 
@@ -98,16 +98,15 @@ Ces bonus sont des **défis facultatifs** permettant d'aller plus loin (et de br
 
 Chaque séance de TP suit le déroulé suivant :
 
-### 🎬 **Début de séance (20-30 minutes)**
+### 🎬 **Début de séance (20-25 minutes)**
 
 1. **Présentation des TPs précédents** (10-15 min)
-   - 2 étudiants tirés au sort présentent leur TP précédent devant la classe
+   - 1/2 étudiants tirés au sort présentent leur TP précédent devant la classe
    - Présentation de 5 minutes maximum par étudiant
    - Objectif : partager les solutions, apprendre des autres, s'entraîner à présenter son travail
 
-2. **Widget of the Week** (10-15 min)
-   - Visionnage collectif de 2 vidéos "Widget of the Week" de Flutter
-   - Discussion rapide sur les widgets présentés et leurs cas d'usage
+2. **Widget of the Week** (10 min)
+   - Visionnage collectif de 1/2 vidéos "Widget of the Week" de Flutter
    - Ces vidéos courtes (1-2 min chacune) présentent des widgets utiles pour vos TPs
    - Playlist : https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG
 
@@ -140,7 +139,7 @@ Le module est organisé en **7 séances d'environ 2h30 (soit 17h30)** :
 | **Séances 6** | TP5 - Développement projet | Travail sur le projet final en binôme |
 | **Séance 7** | TP5 - Finalisation + démo | Dernières touches et présentation des projets finaux |
 
-> 💡 **Rappel** : Chaque TP doit être rendu au début de la séance suivante. Organisez-vous en conséquence !
+> 💡 **Rappel** : Chaque TP doit être rendu au début du TP de la semaine suivante. Organisez-vous en conséquence !
 
 ---
 

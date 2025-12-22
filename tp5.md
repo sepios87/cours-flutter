@@ -253,7 +253,7 @@ Tests unitaires et/ou widgets significatifs (minimum 5 tests) couvrant les fonct
 - [ ] Le dépôt est accessible (public ou accès donné)
 - [ ] Le README est complet
 - [ ] L'application builde et run sans erreur
-- [ ] Au moins 3 Pull Requests reviewées par membre sont visibles
+- [ ] Au moins 2 Pull Requests reviewées par membre sont visibles
 - [ ] Toutes les contraintes de l'orientation choisie sont respectées
 - [ ] La vidéo est accessible et complète
 - [ ] Pas de fichiers sensibles commitées (clés API, .env)

@@ -109,6 +109,7 @@ class MovieListPage extends StatefulWidget {
 }
 
 class _MovieListPageState extends State<MovieListPage> {
+  final MovieService movieService = MovieService();
   List<Movie> movies = [];
   final Set<String> favorites = {};
 
@@ -293,7 +294,7 @@ Quelques idées :
 
 - Projet complet nommé : **`tp3_nom_prenom`**  
 - Une capture d’écran de la liste et une des favoris  
-- Lien GitHub ou archive ZIP  
+- Lien GitHub
 
 ---
 
