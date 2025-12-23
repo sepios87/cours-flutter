@@ -188,6 +188,8 @@ class HomePage extends StatelessWidget {
 }
 ```
 
+![hello world flutter](img/hello_world_flutter.png)
+
 ### ✅ Checkpoint : Teste le Hot Reload
 
 1. Remplace `[Ton Prénom]` par ton vrai prénom
