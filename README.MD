@@ -7,6 +7,19 @@ Chaque TP suit une structure identique pour vous permettre de progresser étape 
 
 ---
 
+## 📚 Glossaire des TPs
+
+Retrouvez ci-dessous les liens directs vers les sujets de chaque TP :
+
+- [TP0 – Configuration de l'environnement et premiers pas](./tp/tp0.md)
+- [TP1 – Carte de profil interactive](./tp/tp1.md)
+- [TP2 – Quiz interactif avec score](./tp/tp2.md)
+- [TP3 – Liste de films avec favoris (JSON local)](./tp/tp3.md)
+- [TP4 – Liste de films avec API (Watchmode) et Dio](./tp/tp4.md)
+- [TP5 – Projet final en binôme](./tp/tp5.md)
+
+---
+
 ## 🧱 Structure générale d’un TP
 
 Chaque TP est présenté sous la forme d’un document contenant les sections suivantes :
@@ -140,19 +153,6 @@ Le module est organisé en **7 séances d'environ 2h30 (soit 17h30)** :
 | **Séance 7** | TP5 - Finalisation + démo | Dernières touches et présentation des projets finaux |
 
 > 💡 **Rappel** : Chaque TP doit être rendu au début du TP de la semaine suivante. Organisez-vous en conséquence !
-
----
-
-## 📚 Glossaire des TPs
-
-Retrouvez ci-dessous les liens directs vers les sujets de chaque TP :
-
-- [TP0 – Configuration de l'environnement et premiers pas](./tp/tp0.md)
-- [TP1 – Carte de profil interactive](./tp/tp1.md)
-- [TP2 – Quiz interactif avec score](./tp/tp2.md)
-- [TP3 – Liste de films avec favoris (JSON local)](./tp/tp3.md)
-- [TP4 – Liste de films avec API (Watchmode) et Dio](./tp/tp4.md)
-- [TP5 – Projet final en binôme](./tp/tp5.md)
 
 ---
 
