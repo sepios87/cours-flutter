@@ -809,17 +809,189 @@ class MyApp extends StatelessWidget {
 
 ---
 
+## 🪜 Étape 7 — Tests unitaires et tests de widgets
+
+Les tests permettent de vérifier automatiquement que ton code fonctionne correctement. Il existe deux types de tests importants :
+- **Tests unitaires** : testent la logique pure (modèles, parsing JSON, etc.)
+- **Tests de widgets** : testent l'affichage et l'interface utilisateur
+
+### 7.1 — Tests unitaires des modèles
+
+Crée un fichier `test/models/movie_test.dart` :
+
+```dart
+import 'package:flutter_test/flutter_test.dart';
+import 'package:tp4_nom_prenom/models/movie.dart';
+
+void main() {
+  group('MovieListItem Tests', () {
+    test('Parse correctement un JSON valide', () {
+      // Arrange : Préparer des données JSON
+      final json = {
+        'id': 123,
+        'title': 'Test Movie',
+        'year': 2024,
+      };
+
+      // Act : Créer un MovieListItem à partir du JSON
+      final movie = MovieListItem.fromJson(json);
+
+      // Assert : Vérifier que les valeurs sont correctes
+      expect(movie.id, 123);
+      expect(movie.title, 'Test Movie');
+      expect(movie.year, 2024);
+    });
+
+    test('Gère les valeurs nulles avec des valeurs par défaut', () {
+      // JSON avec des champs manquants
+      final json = {
+        'id': 456,
+      };
+
+      final movie = MovieListItem.fromJson(json);
+
+      // Vérifie que les valeurs par défaut sont appliquées
+      expect(movie.id, 456);
+      expect(movie.title, 'Sans titre');
+      expect(movie.year, 0);
+    });
+
+    // ... et bien plus ! Crée d'autres tests pertinents :
+    // - Teste d'autres cas limites
+    // - Teste le parsing du modèle Movie complet
+    // - Teste le getter posterUrl avec et sans poster
+  });
+}
+```
+
+### 7.2 — Tests de widgets
+
+Crée un fichier `test/widgets/movie_list_card_test.dart` :
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:tp4_nom_prenom/models/movie.dart';
+import 'package:tp4_nom_prenom/pages/movie_list_page.dart';
+
+void main() {
+  group('MovieListCard Widget Tests', () {
+    testWidgets("Affiche correctement le titre et l'année d'un film",
+        (WidgetTester tester) async {
+      // Créer un film de test
+      final testMovie = MovieListItem(
+        id: 1,
+        title: 'Test Movie',
+        year: 2024,
+      );
+
+      // Construire le widget
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MovieListCard(
+              movieService: MockMovieService(),
+              movie: testMovie,
+              isFavorite: false,
+              onFavoriteTap: () {},
+            ),
+          ),
+        ),
+      );
+
+      // Assert : Vérifier que le titre et l'année sont affichés
+      expect(find.text('Test Movie'), findsOneWidget);
+      expect(find.text('Année : 2024'), findsOneWidget);
+    });
+
+    testWidgets("Affiche l'icône favorite quand le film est favori",
+        (WidgetTester tester) async {
+      final testMovie = MovieListItem(
+        id: 1,
+        title: 'Favorite Movie',
+        year: 2024,
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MovieListCard(
+              movieService: MockMovieService(),
+              movie: testMovie,
+              isFavorite: true,
+              onFavoriteTap: () {},
+            ),
+          ),
+        ),
+      );
+
+      // Vérifier que l'icône favorite pleine est affichée
+      expect(find.byIcon(Icons.favorite), findsOneWidget);
+    });
+
+    // ... et bien plus ! Crée d'autres tests de widgets :
+    // - Teste l'icône favorite_border quand isFavorite est false
+    // - Teste l'affichage du CircleAvatar avec la première lettre
+    // - Teste la couleur du CircleAvatar selon la première lettre
+  });
+}
+
+// Mock (simulation) du MovieService pour les tests
+// Permet de créer un MovieListCard sans avoir besoin d'une vraie connexion API
+// Dans ces tests, on ne teste que l'affichage, donc ces méthodes ne sont jamais appelées
+class MockMovieService {
+  Future<List<MovieListItem>> getMovies({int limit = 20}) async {
+    return []; // Retourne une liste vide (non utilisée dans ces tests)
+  }
+
+  Future<Movie> getMovieDetails(int movieId) async {
+    // Lance une erreur car non implémenté (non utilisé dans ces tests)
+    throw UnimplementedError();
+  }
+}
+```
+
+### Lancer les tests
+
+```bash
+flutter test
+```
+
+Tu devrais voir un résultat comme :
+```
+✓ Parse correctement un JSON valide
+✓ Gère les valeurs nulles avec des valeurs par défaut
+✓ Affiche correctement le titre et l'année d'un film
+✓ Affiche l'icône favorite quand le film est favori
+... et tous tes autres tests !
+
+All tests passed!
+```
+
+> **💡 Notions clés expliquées :**
+> - **group()** : Regroupe plusieurs tests liés ensemble
+> - **testWidgets()** : Crée un test pour un widget Flutter
+> - **WidgetTester** : Outil pour construire et interagir avec des widgets dans les tests
+> - **pumpWidget()** : "Construit" le widget dans l'environnement de test
+> - **find.text()** : Cherche un widget contenant un texte spécifique
+> - **find.byIcon()** : Cherche un widget Icon avec une icône spécifique
+> - **expect()** : Vérifie qu'une condition est vraie
+> - **findsOneWidget** : Vérifie qu'exactement un widget correspond à la recherche
+> - **Mock** : Fausse implémentation d'une classe pour isoler les tests
+
+---
+
 ## ✅ Objectif final
 
 À la fin du TP, ton application doit :
 - Charger des films depuis l'**API Watchmode** avec **Dio**
 - Afficher une liste de films récents avec première lettre colorée et favoris
-- Gérer les **états de chargement et d'erreur** sur toutes les pages
+- Gérer les **états de chargement et d'erreur** sur toutes les pages avec messages clairs et bouton réessayer
 - Faire un **second appel API** pour charger les détails complets (poster, synopsis, note, genres)
 - Afficher une page de détails riche avec toutes les informations du film
-- **Ouvrir les bandes-annonces** dans le navigateur avec **url_launcher**
 - Gérer les favoris avec navigation entre liste principale et favoris
-- Respecter les **bonnes pratiques** du TP3 (extraction de widgets, gestion d'erreurs, instance globale du service)
+- Respecter les **bonnes pratiques** (extraction de widgets, gestion d'erreurs, instance globale du service)
+- Faire des **tests unitaires** et des **tests de widgets**
 
 ---
 
@@ -844,27 +1016,44 @@ class MyApp extends StatelessWidget {
 | **Gestion des états** | Loading, erreur, et données affichées correctement sur les 2 pages | 3 |
 | **Affichage de la liste** | Liste avec première lettre colorée, favoris fonctionnels | 2 |
 | **Page de détails complète** | Chargement dynamique, poster, note, genres, synopsis | 3 |
-| **url_launcher** | Ouverture des bandes-annonces dans le navigateur, gestion d'erreurs | 2 |
-| **Extraction de widgets** | `MovieListCard` et instance globale du service | 2 |
+| **Gestion des erreurs réseau** | Messages d'erreur clairs, bouton réessayer, mode avion géré | 2 |
+| **Tests unitaires et widgets** | Au moins 3 tests unitaires (modèles) et 3 tests de widgets (MovieListCard) | 2 |
 | **Navigation et UX** | Navigation fluide, gestion des favoris, design cohérent | 3 |
 | **Total** |  | **/20** |
 
 ---
 
 ### 🎁 Bonus (+2 points possibles)
-*Tu peux réaliser les 3 si tu veux, mais la note bonus plafonne à +2.*
 
-#### Bonus 1 : Chargement intelligent avec cache (+1 point)
-Ajouter un système de cache simple pour éviter de recharger les détails d'un film déjà consulté :
-- Utiliser une `Map<int, Movie>` dans le service pour stocker les films déjà chargés
-- Vérifier le cache avant de faire l'appel API
-- Afficher les données en cache pendant le rechargement pour une meilleure UX
+#### Bonus 1 : Chargement intelligent avec cache (+0.5 point)
 
-#### Bonus 2 : Où regarder le film ? (+1 point)
+Actuellement, chaque fois qu'un utilisateur clique sur un film déjà consulté, l'application refait un appel API. C'est inutile et ça consomme ta quota d'API ! Implémente un système de cache simple.
+
+**Concept :** Stocker les films déjà chargés en mémoire pour éviter de les recharger.
+
+**Où implémenter :**
+- Dans `MovieService`, ajoute une variable privée `final Map<int, Movie> _cache = {};`
+- Modifie la méthode `getMovieDetails(int movieId)` pour :
+  1. Vérifier si le film est dans le cache avec `_cache.containsKey(movieId)`
+  2. Si oui, retourner `_cache[movieId]!` immédiatement
+  3. Si non, faire l'appel API comme d'habitude
+  4. Après avoir récupéré les données de l'API, les stocker dans le cache : `_cache[movieId] = loadedMovie`
+  5. Retourner les données
+
+**Teste ton bonus :**
+- Active le mode avion
+- Clique sur un film (appel API, puis stocké en cache)
+- Retourne à la liste
+- Désactive le wifi
+- Re-clique sur le même film → ça doit afficher les détails sans erreur (chargés depuis le cache) !
+
+**Note :** Ce cache est en mémoire, il est perdu au redémarrage de l'app. Pour persister le cache, il faudrait utiliser SharedPreferences ou Hive (hors scope de ce bonus).
+
+#### Bonus 2 : Où regarder le film ? (+0.75 point)
 Afficher sur quelles plateformes de streaming le film est disponible (Netflix, Amazon, Disney+, etc.).
 Endpoint utile : `/title/{id}/sources/`
 
-#### Bonus 3 : Casting du film (+1 point)
+#### Bonus 3 : Casting du film (+0.75 point)
 Afficher la liste des acteurs principaux du film dans la page de détails.
 Endpoint utile : `/title/{id}/cast-crew/`
 
