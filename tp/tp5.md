@@ -152,7 +152,7 @@ Votre README doit contenir :
 Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
 > **💡 Pourquoi les code reviews ?**
-> Les **code reviews** sont une pratique pro essentielle : un autre développeur lit ton code avant de l'intégrer. Ça permet de :
+> Les **code reviews** sont une pratique pro essentielle : un autre développeur lit votre code avant de l'intégrer. Ça permet de :
 > - Détecter des bugs tôt
 > - Partager les connaissances dans l'équipe
 > - Améliorer la qualité du code
