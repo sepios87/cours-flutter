@@ -11,7 +11,7 @@
 
 ---
 
-![Exemple final](../img/tp1.png)
+<img src="../img/tp1.png" width="400" alt="Exemple final">
 
 ## 🎨 Deux approches possibles
 

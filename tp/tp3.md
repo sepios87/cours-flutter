@@ -9,7 +9,7 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
-![Exemple final](../img/tp3_1.png)
+<img src="../img/tp3_1.png" width="400" alt="Exemple final">
 
 ---
 
@@ -546,7 +546,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 }
 ```
 
-![Exemple final](../img/tp3_2.png)
+<img src="../img/tp3_2.png" width="400" alt="Exemple final">
 
 > **💡 Notions clés expliquées :**
 > - **late** : Indique qu'une variable sera initialisée plus tard, mais avant d'être utilisée. Ici, `late bool isFavorite` est initialisée dans `initState()`.

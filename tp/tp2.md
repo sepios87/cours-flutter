@@ -8,7 +8,7 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
-![Quiz Flutter](../img/tp2_1.png)
+<img src="../img/tp2_1.png" width="400" alt="Quiz Flutter">
 
 ---
 
@@ -206,7 +206,7 @@ Inspire-toi des guidelines Material Design !
 - Afficher un **écran de résultat** clair et redémarrer le quiz
 - Avoir un **design personnalisé et agréable**
 
-![Quiz Flutter](../img/tp2_2.png)
+<img src="../img/tp2_2.png" width="400" alt="Quiz Flutter">
 
 ---
 
