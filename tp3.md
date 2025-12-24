@@ -9,6 +9,8 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
+![Exemple final](img/tp3_1.png)
+
 ---
 
 ## 🪜 Étape 1 — Créer le projet
@@ -29,17 +31,20 @@
      {
        "title": "Inception",
        "year": 2010,
-       "poster": "https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg"
+       "poster": "https://image.tmdb.org/t/p/w500/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg",
+       "description": "Un voleur qui s'infiltre dans les rêves des gens pour voler leurs secrets se voit confier une mission impossible : implanter une idée dans l'esprit d'un PDG."
      },
      {
        "title": "Interstellar",
        "year": 2014,
-       "poster": "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+       "poster": "https://image.tmdb.org/t/p/w500/1pnigkWWy8W032o9TKDneBa3eVK.jpg",
+       "description": "Une équipe d'explorateurs voyage à travers un trou de ver dans l'espace pour assurer la survie de l'humanité face à la fin de la Terre."
      },
      {
        "title": "The Dark Knight",
        "year": 2008,
-       "poster": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+       "poster": "https://image.tmdb.org/t/p/w500/pyNXnq8QBWoK3b37RS6C3axwUOy.jpg",
+       "description": "Batman affronte le Joker, un criminel chaotique qui plonge Gotham dans l'anarchie et force le chevalier noir à affronter ses propres limites morales."
      }
    ]
    ```
@@ -64,14 +69,21 @@ class Movie {
   final String title;
   final int year;
   final String poster;
+  final String description;
 
-  Movie({required this.title, required this.year, required this.poster});
+  Movie({
+    required this.title,
+    required this.year,
+    required this.poster,
+    required this.description,
+  });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
       title: json['title'],
       year: json['year'],
       poster: json['poster'],
+      description: json['description'],
     );
   }
 }
@@ -93,7 +105,9 @@ class MovieService {
 
 ---
 
-## 🪜 Étape 3 — Afficher la liste des films
+## 🪜 Étape 3 — Afficher la liste des films (version simple)
+
+Commençons par créer une liste simple sans favoris pour bien comprendre les bases.
 
 Crée un fichier `lib/movie_list_page.dart` :
 
@@ -102,14 +116,151 @@ import 'package:flutter/material.dart';
 import 'service/movie_service.dart';
 
 class MovieListPage extends StatefulWidget {
-  const MovieListPage({super.key});
+  final MovieService movieService;
+
+  const MovieListPage({super.key, required this.movieService});
 
   @override
   State<MovieListPage> createState() => _MovieListPageState();
 }
 
 class _MovieListPageState extends State<MovieListPage> {
-  final MovieService movieService = MovieService();
+  List<Movie> movies = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMovies();
+  }
+
+  Future<void> _loadMovies() async {
+    final loadedMovies = await widget.movieService.loadLocalMovies();
+    setState(() => movies = loadedMovies);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('🎬 Liste de films'),
+      ),
+      body: movies.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: movies.length,
+              itemBuilder: (context, index) {
+                final movie = movies[index];
+                return Card(
+                  margin: const EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: Image.network(
+                        movie.poster,
+                        width: 50,
+                        height: 75,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => Container(
+                          width: 50,
+                          height: 75,
+                          color: Colors.grey[300],
+                          child: const Icon(Icons.movie),
+                        ),
+                      ),
+                    ),
+                    title: Text(movie.title),
+                    subtitle: Text('${movie.year}'),
+                  ),
+                );
+              },
+            ),
+    );
+  }
+}
+```
+
+> **💡 Notions clés expliquées :**
+> - **widget.movieService** : Dans une classe `State`, on accède aux propriétés du `StatefulWidget` parent via `widget.`.
+> - **initState()** : Appelé UNE SEULE FOIS quand le widget est créé. Parfait pour charger des données initiales.
+> - **ListView.builder()** : Crée une liste optimisée qui ne construit que les éléments visibles à l'écran (performant pour de longues listes).
+> - **ClipRRect** : Découpe un widget avec des coins arrondis. Ici, on arrondit les angles des images de films.
+> - **errorBuilder** : Fonction appelée quand une image ne charge pas. Permet d'afficher un widget de remplacement (icône, placeholder, etc.).
+
+✅ Lance ton app avec `flutter run` : tu devrais voir une liste de films !
+
+---
+
+## 🪜 Étape 4 — Ajouter la gestion des favoris
+
+Maintenant, ajoutons la possibilité de mettre des films en favoris. On va :
+1. Extraire le code de la carte dans un widget `MovieCard` réutilisable
+2. Ajouter la gestion des favoris
+3. Créer une page dédiée aux favoris
+
+### 4.1 — Créer le widget MovieCard réutilisable
+
+Ajoute ce widget **à la fin** du fichier `lib/movie_list_page.dart` :
+
+```dart
+class MovieCard extends StatelessWidget {
+  final Movie movie;
+  final bool isFavorite;
+  final VoidCallback onFavoriteTap;
+  final IconData? favoriteIcon;
+
+  const MovieCard({
+    super.key,
+    required this.movie,
+    required this.isFavorite,
+    required this.onFavoriteTap,
+    this.favoriteIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(8),
+      child: ListTile(
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: Image.network(
+            movie.poster,
+            width: 50,
+            height: 75,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => Container(
+              width: 50,
+              height: 75,
+              color: Colors.grey[300],
+              child: const Icon(Icons.movie),
+            ),
+          ),
+        ),
+        title: Text(movie.title),
+        subtitle: Text('${movie.year}'),
+        trailing: IconButton(
+          icon: Icon(
+            favoriteIcon ?? (isFavorite ? Icons.favorite : Icons.favorite_border),
+            color: isFavorite && favoriteIcon == null ? Colors.red : null,
+          ),
+          onPressed: onFavoriteTap,
+        ),
+      ),
+    );
+  }
+}
+```
+
+> **💡 Notions clés expliquées :**
+> - **Extraction de widget** : `MovieCard` est un widget séparé réutilisable. C'est une bonne pratique pour éviter la duplication de code.
+> - **VoidCallback** : Type pour une fonction qui ne prend aucun paramètre et ne retourne rien. Équivalent à `void Function()`.
+
+### 4.2 — Modifier MovieListPage pour utiliser MovieCard et gérer les favoris
+
+Remplace la classe `_MovieListPageState` dans `lib/movie_list_page.dart` par :
+
+```dart
+class _MovieListPageState extends State<MovieListPage> {
   List<Movie> movies = [];
   final Set<String> favorites = {};
 
@@ -120,19 +271,13 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 
   Future<void> _loadMovies() async {
-    final loadedMovies = await movieService.loadLocalMovies();
-    setState(() {
-      movies = loadedMovies;
-    });
+    final loadedMovies = await widget.movieService.loadLocalMovies();
+    setState(() => movies = loadedMovies);
   }
 
   void toggleFavorite(String title) {
     setState(() {
-      if (favorites.contains(title)) {
-        favorites.remove(title);
-      } else {
-        favorites.add(title);
-      }
+      favorites.contains(title) ? favorites.remove(title) : favorites.add(title);
     });
   }
 
@@ -144,53 +289,48 @@ class _MovieListPageState extends State<MovieListPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.favorite),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => FavoritesPage(
-                    favorites: favorites,
-                    movies: movies,
-                    toggleFavorite: toggleFavorite,
-                  ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => FavoritesPage(
+                  favorites: favorites,
+                  movies: movies,
+                  toggleFavorite: toggleFavorite,
                 ),
-              );
-            },
-          )
+              ),
+            ),
+          ),
         ],
       ),
       body: movies.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: movies.length,
-              itemBuilder: (context, index) {
-                final movie = movies[index];
-                final isFav = favorites.contains(movie.title);
-                return Card(
-                  margin: const EdgeInsets.all(8),
-                  child: ListTile(
-                    leading: Image.network(movie.poster, width: 50),
-                    title: Text(movie.title),
-                    subtitle: Text('${movie.year}'),
-                    trailing: IconButton(
-                      icon: Icon(
-                        isFav ? Icons.favorite : Icons.favorite_border,
-                        color: isFav ? Colors.red : null,
-                      ),
-                      onPressed: () => toggleFavorite(movie.title),
-                    ),
-                  ),
-                );
-              },
+              itemBuilder: (context, index) => MovieCard(
+                movie: movies[index],
+                isFavorite: favorites.contains(movies[index].title),
+                onFavoriteTap: () => toggleFavorite(movies[index].title),
+              ),
             ),
     );
   }
 }
+```
 
-class FavoritesPage extends StatelessWidget {
+> **💡 Notions clés expliquées :**
+> - **Set** : Une collection qui ne peut pas contenir de doublons. Ici, `Set<String>` stocke les titres favoris (impossible d'ajouter deux fois le même film).
+> - **Opérateur ternaire** : `condition ? siVrai : siFaux`. Ici, on l'utilise pour ajouter ou retirer un favori en une ligne.
+> - **Navigator.push()** : Change de page en "empilant" une nouvelle page par-dessus l'actuelle (comme ajouter une carte sur un tas).
+
+### 4.3 — Créer la page des favoris
+
+Ajoute cette classe **à la fin** du fichier `lib/movie_list_page.dart` (avant `MovieCard`) :
+
+```dart
+class FavoritesPage extends StatefulWidget {
   final Set<String> favorites;
   final List<Movie> movies;
-  final Function(String) toggleFavorite;
+  final void Function(String) toggleFavorite;
 
   const FavoritesPage({
     super.key,
@@ -200,9 +340,18 @@ class FavoritesPage extends StatelessWidget {
   });
 
   @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+  void _removeFavorite(String title) {
+    widget.toggleFavorite(title);
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final favMovies =
-        movies.where((movie) => favorites.contains(movie.title)).toList();
+    final favMovies = widget.movies.where((m) => widget.favorites.contains(m.title)).toList();
 
     return Scaffold(
       appBar: AppBar(title: const Text('❤️ Mes favoris')),
@@ -210,28 +359,205 @@ class FavoritesPage extends StatelessWidget {
           ? const Center(child: Text('Aucun favori pour le moment.'))
           : ListView.builder(
               itemCount: favMovies.length,
-              itemBuilder: (context, index) {
-                final movie = favMovies[index];
-                return Card(
-                  margin: const EdgeInsets.all(8),
-                  child: ListTile(
-                    leading: Image.network(movie.poster, width: 50),
-                    title: Text(movie.title),
-                    subtitle: Text('${movie.year}'),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () => toggleFavorite(movie.title),
-                    ),
-                  ),
-                );
-              },
+              itemBuilder: (context, index) => MovieCard(
+                movie: favMovies[index],
+                isFavorite: true,
+                onFavoriteTap: () => _removeFavorite(favMovies[index].title),
+                favoriteIcon: Icons.delete,
+              ),
             ),
     );
   }
 }
 ```
 
-Et enfin ton `main.dart` :
+> **💡 Notions clés expliquées :**
+> - **where()** : Filtre une liste. Ici, on garde seulement les films dont le titre est dans les favoris.
+> - **toList()** : Convertit le résultat du filtre en liste. Nécessaire car `where()` retourne un `Iterable`.
+> - **Réutilisation de widget** : On utilise le même `MovieCard` pour la liste principale et les favoris, avec juste un paramètre différent (`favoriteIcon`).
+
+✅ Teste ton app : tu peux maintenant ajouter des favoris et voir la page dédiée !
+
+---
+
+## 🪜 Étape 5 — Ajouter la page de détails
+
+Dernière étape : créer une page de détails pour chaque film.
+
+### 5.1 — Rendre MovieCard cliquable
+
+Modifie le widget `MovieCard` dans `lib/movie_list_page.dart`. Entoure le `ListTile` avec un `InkWell` :
+
+```dart
+class MovieCard extends StatelessWidget {
+  final Movie movie;
+  final bool isFavorite;
+  final VoidCallback onFavoriteTap;
+  final IconData? favoriteIcon;
+
+  const MovieCard({
+    super.key,
+    required this.movie,
+    required this.isFavorite,
+    required this.onFavoriteTap,
+    this.favoriteIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(8),
+      child: InkWell(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => MovieDetailPage(
+              movie: movie,
+              isFavorite: isFavorite,
+              onFavoriteTap: onFavoriteTap,
+            ),
+          ),
+        ),
+        child: ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Image.network(
+              movie.poster,
+              width: 50,
+              height: 75,
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => Container(
+                width: 50,
+                height: 75,
+                color: Colors.grey[300],
+                child: const Icon(Icons.movie),
+              ),
+            ),
+          ),
+          title: Text(movie.title),
+          subtitle: Text('${movie.year}'),
+          trailing: IconButton(
+            icon: Icon(
+              favoriteIcon ?? (isFavorite ? Icons.favorite : Icons.favorite_border),
+              color: isFavorite && favoriteIcon == null ? Colors.red : null,
+            ),
+            onPressed: onFavoriteTap,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+> **💡 Notion clé :**
+> - **InkWell** : Rend un widget cliquable avec un effet de "vague" visuel au toucher (Material Design).
+
+### 5.2 — Créer la page de détails
+
+Ajoute cette classe **à la fin** du fichier `lib/movie_list_page.dart` :
+
+```dart
+class MovieDetailPage extends StatefulWidget {
+  final Movie movie;
+  final bool initialIsFavorite;
+  final VoidCallback onFavoriteTap;
+
+  const MovieDetailPage({
+    super.key,
+    required this.movie,
+    required bool isFavorite,
+    required this.onFavoriteTap,
+  }) : initialIsFavorite = isFavorite;
+
+  @override
+  State<MovieDetailPage> createState() => _MovieDetailPageState();
+}
+
+class _MovieDetailPageState extends State<MovieDetailPage> {
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.initialIsFavorite;
+  }
+
+  void _toggleFavorite() {
+    setState(() => isFavorite = !isFavorite);
+    widget.onFavoriteTap();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.movie.title),
+        actions: [
+          IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? Colors.red : null,
+            ),
+            onPressed: _toggleFavorite,
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(
+              widget.movie.poster,
+              width: double.infinity,
+              height: 400,
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.calendar_today, size: 16),
+                      const SizedBox(width: 8),
+                      Text('${widget.movie.year}', style: const TextStyle(fontSize: 16)),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Synopsis',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    widget.movie.description,
+                    style: const TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+![Exemple final](img/tp3_2.png)
+
+> **💡 Notions clés expliquées :**
+> - **late** : Indique qu'une variable sera initialisée plus tard, mais avant d'être utilisée. Ici, `late bool isFavorite` est initialisée dans `initState()`.
+
+✅ Teste ton app : clique sur un film pour voir sa page de détails avec le synopsis !
+
+---
+
+## 🪜 Étape 6 — Finaliser l'application avec le main.dart
+
+Crée ou modifie le fichier `lib/main.dart` :
 
 ```dart
 import 'package:flutter/material.dart';
@@ -253,48 +579,47 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const MovieListPage(),
+      home: MovieListPage(movieService: movieService),
     );
   }
 }
 ```
 
-> **💡 Notions clés expliquées :**
-> - **initState()** : Appelé UNE SEULE FOIS quand le widget est créé. C'est l'"allumage" du widget, parfait pour charger des données initiales.
-> - **Set** : Une collection qui ne peut pas contenir de doublons. Ici, `Set<String>` stocke les titres favoris (impossible d'ajouter deux fois le même film).
-> - **ListView.builder()** : Crée une liste optimisée qui ne construit que les éléments visibles à l'écran (performant pour de longues listes).
-> - **Navigator.push()** : Change de page en "empilant" une nouvelle page par-dessus l'actuelle (comme ajouter une carte sur un tas).
-> - **CircularProgressIndicator** : Une roue qui tourne pour indiquer qu'on attend que quelque chose charge.
-
-✅ Tu devrais maintenant voir une liste de films avec la possibilité de les mettre ou retirer des favoris.
+✅ Lance ton app avec `flutter run` : tu devrais maintenant avoir une application complète avec liste, favoris et détails !
 
 ---
 
-## 🪜 Étape 4 — Améliorer l’interface
+## 🪜 Étape 7 — Améliorer l'interface (optionnel)
 
-Quelques idées :
-- Transformer la liste en **grille** (`GridView.builder`)  
-- Ajouter une **recherche** (`TextField` + `setState`)  
-- Mettre une **animation** sur les favoris (`AnimatedIcon` ou `AnimatedContainer`)  
-- Trier les films par **année ou titre**
+Quelques idées pour aller plus loin :
+- Transformer la liste en **grille** (`GridView.builder`) avec un bouton pour basculer entre les modes
+- Ajouter une **barre de recherche** (`TextField` + `setState`) pour filtrer les films par titre
+- Mettre une **animation** sur les favoris (`AnimatedIcon` ou `Hero` pour les transitions)
+- Ajouter un **tri** des films par année ou titre (avec un menu déroulant)
+- Améliorer la **page de détails** : ajouter une note, un genre, des acteurs, etc.
 
 ---
 
 ## ✅ Objectif final
 
 À la fin du TP, ton application doit :
-- Charger des films depuis un **JSON local**  
-- Les afficher dans une **liste claire et responsive**  
-- Permettre de **mettre ou retirer des favoris**  
-- Afficher une **page séparée** listant uniquement les favoris  
+- Charger des films depuis un **JSON local**
+- Les afficher dans une **liste claire et responsive**
+- Permettre de **mettre ou retirer des favoris**
+- Afficher une **page séparée** listant uniquement les favoris
+- Afficher une **page de détails** pour chaque film avec son synopsis
+- Gérer les **erreurs de chargement d'images** avec un placeholder  
 
 ---
 
 ## 💾 Rendu attendu
 
-- Projet complet nommé : **`tp3_nom_prenom`**  
-- Une capture d’écran de la liste et une des favoris  
-- Lien GitHub
+- Projet complet nommé : **`tp3_nom_prenom`**
+- Trois captures d'écran :
+  - La liste principale des films
+  - La page des favoris
+  - La page de détails d'un film
+- Lien GitHub du projet
 
 ---
 
@@ -302,14 +627,15 @@ Quelques idées :
 
 | Critère | Détails | Points |
 |----------|----------|--------|
-| **Structure du projet** | Fichiers bien organisés (`main`, `service`, `pages`) | 3 |
-| **Chargement des données** | JSON bien lu et affiché sans erreur | 3 |
-| **Affichage de la liste** | Liste lisible et responsive | 3 |
-| **Gestion des favoris** | Ajout/suppression fonctionnels | 3 |
-| **Navigation** | Passage entre pages fluide et sans erreur | 2 |
-| **Design et ergonomie** | Couleurs, marges, icônes, lisibilité | 3 |
-| **Code et bonnes pratiques** | Respect du style Flutter/Dart | 2 |
-| **Créativité et personnalisation** | Bonus visuels, tri, recherche, animations | 1 |
+| **Structure du projet** | Fichiers bien organisés (`main`, `service`, `pages`) | 2 |
+| **Chargement des données** | JSON bien lu et affiché sans erreur | 2 |
+| **Affichage de la liste** | Liste lisible et responsive avec `MovieCard` | 2 |
+| **Gestion des favoris** | Ajout/suppression fonctionnels sur liste et détails | 3 |
+| **Page de détails** | Page complète avec poster, synopsis, année | 3 |
+| **Navigation** | Transitions fluides entre les 3 pages | 2 |
+| **Gestion des erreurs** | `errorBuilder` pour les images qui ne chargent pas | 2 |
+| **Design et ergonomie** | Couleurs, marges, icônes, lisibilité | 2 |
+| **Code et bonnes pratiques** | Extraction de widgets, style Flutter/Dart propre | 2 |
 | **Total** |  | **/20 + 2 bonus** |
 
 ---
@@ -327,6 +653,11 @@ Ajouter un bouton dans l'AppBar pour basculer entre deux modes d'affichage :
 - Mode Liste (`ListView`) : affichage actuel
 - Mode Grille (`GridView.builder`) : affichage en grille 2 colonnes avec cartes visuelles
 
+#### Bonus 3 : Ajout de filtres et tri (+1 point)
+Améliorer l'expérience utilisateur avec des fonctionnalités de filtrage :
+- Ajouter un menu déroulant pour trier les films
+- Ajouter une barre de recherche pour filtrer par titre
+
 ---
 
 ## 💡 Conseils
@@ -336,10 +667,32 @@ Ajouter un bouton dans l'AppBar pour basculer entre deux modes d'affichage :
 - Garde ton code propre et bien séparé : c'est le début d'une vraie architecture Flutter !
 - Pour les bonus tests, lance `flutter test` dans ton terminal pour exécuter tes tests unitaires.
 
+### 🔧 Dépannage
+**Problèmes d'affichage des images ?**
+Si les images ne s'affichent pas correctement (notamment après un changement de réseau pendant le développement), essaie de redémarrer l'émulateur en **cold boot** :
+1. Ferme l'émulateur
+2. Dans Android Studio : **Tools > Device Manager**
+3. Clique sur le menu ⋮ de ton émulateur
+4. Sélectionne **Cold Boot Now**
+
+Cela peut résoudre les problèmes de cache réseau et d'affichage des images.
+
 ### 🏗️ Architecture : Instance globale du service
-Dans ce TP, `movieService` est définie comme une **instance globale** au niveau du `main.dart`. Cela garantit qu'une seule instance du service existe dans toute l'application. C'est une bonne pratique car :
-- Facilite les tests unitaires (on peut remplacer l'instance)
+Dans ce TP, `movieService` est définie comme une **instance globale** au niveau du `main.dart` et passée en paramètre à `MovieListPage`. Cela garantit qu'une seule instance du service existe dans toute l'application. C'est une bonne pratique car :
+- Facilite les tests unitaires (on peut remplacer l'instance facilement)
 - Permet d'ajouter facilement du cache ou de la configuration
 - Prépare le terrain pour évoluer vers une API sans tout réécrire
+- Évite de créer plusieurs instances inutiles du même service
 
-C'est mieux que des méthodes `static` qui sont difficiles à tester et à étendre !  
+### 📁 Organisation des fichiers
+- `lib/pages/movie_list_page.dart`
+- `lib/pages/favorites_page.dart`
+- `lib/pages/movie_detail_page.dart`
+- `lib/widgets/movie_card.dart`
+- `lib/services/movie_service.dart`
+- `lib/models/movie.dart`
+
+Cette séparation améliore la maintenabilité et la testabilité du code.
+
+### ⚠️ Limitations actuelles
+- **Favoris non persistants** : Les favoris sont stockés en mémoire (`Set<String>`) et sont perdus à chaque redémarrage de l'application. Pour les conserver, il faudrait utiliser un système de stockage local comme `shared_preferences` ou `hive` !

@@ -8,6 +8,8 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
+![Quiz Flutter](img/tp2_1.png)
+
 ---
 
 ## 🪜 Étape 1 — Préparer la structure du quiz
@@ -16,6 +18,21 @@ Crée un fichier `lib/quiz_page.dart` et ajoute :
 
 ```dart
 import 'package:flutter/material.dart';
+
+// Modèles de données typés
+class Answer {
+  final String text;
+  final bool isCorrect;
+
+  Answer({required this.text, required this.isCorrect});
+}
+
+class Question {
+  final String question;
+  final List<Answer> answers;
+
+  Question({required this.question, required this.answers});
+}
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -33,28 +50,28 @@ class _QuizPageState extends State<QuizPage> {
   int currentQuestion = 0;
   int score = 0;
 
-  final List<Map<String, Object>> questions = [
-    {
-      'question': 'Quelle entreprise développe Flutter ?',
-      'answers': [
-        {'text': 'Google', 'isCorrect': true},
-        {'text': 'Apple', 'isCorrect': false},
-        {'text': 'Microsoft', 'isCorrect': false},
+  final List<Question> questions = [
+    Question(
+      question: 'Quelle entreprise développe Flutter ?',
+      answers: [
+        Answer(text: 'Google', isCorrect: true),
+        Answer(text: 'Apple', isCorrect: false),
+        Answer(text: 'Microsoft', isCorrect: false),
       ],
-    },
-    {
-      'question': 'Quel langage est utilisé avec Flutter ?',
-      'answers': [
-        {'text': 'Kotlin', 'isCorrect': false},
-        {'text': 'Dart', 'isCorrect': true},
-        {'text': 'Swift', 'isCorrect': false},
+    ),
+    Question(
+      question: 'Quel langage est utilisé avec Flutter ?',
+      answers: [
+        Answer(text: 'Kotlin', isCorrect: false),
+        Answer(text: 'Dart', isCorrect: true),
+        Answer(text: 'Swift', isCorrect: false),
       ],
-    },
+    ),
   ];
 
   void answerQuestion(bool isCorrect) {
-    if (isCorrect) score++;
     setState(() {
+      if (isCorrect) score++;
       currentQuestion++;
     });
   }
@@ -96,18 +113,18 @@ class _QuizPageState extends State<QuizPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              question['question'] as String,
+              question.question,  // Pas de cast ! Typage direct
               style: const TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            ...(question['answers'] as List<Map<String, Object>>).map((answer) {
+            ...question.answers.map((answer) {
               return Container(
                 width: double.infinity,
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 child: ElevatedButton(
-                  onPressed: () => answerQuestion(answer['isCorrect'] as bool),
-                  child: Text(answer['text'] as String),
+                  onPressed: () => answerQuestion(answer.isCorrect),
+                  child: Text(answer.text),  // Pas de cast !
                 ),
               );
             }),
@@ -188,6 +205,8 @@ Inspire-toi des guidelines Material Design !
 - Gérer la **progression et le score**
 - Afficher un **écran de résultat** clair et redémarrer le quiz
 - Avoir un **design personnalisé et agréable**
+
+![Quiz Flutter](img/tp2_2.png)
 
 ---
 
