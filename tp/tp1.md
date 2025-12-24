@@ -9,16 +9,16 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
----
+<img src="../img/tp1.png" width="300" alt="Exemple final">
 
-<img src="../img/tp1.png" width="400" alt="Exemple final">
+---
 
 ## 🎨 Deux approches possibles
 
 Tu as **deux options** pour réaliser ce TP :
 
 ### Option 1 : Suivre le tutoriel guidé (Recommandé pour débuter)
-Suis les étapes ci-dessous pour créer une carte de profil moderne avec des cartes tournées, des gradients et des icônes cliquables. Cette approche te permet d'apprendre progressivement les concepts Flutter.
+Suis les étapes ci-dessous pour créer une carte de profil, des gradients et des icônes cliquables. Cette approche te permet d'apprendre progressivement les concepts Flutter.
 
 ### Option 2 : Design libre inspiré de Dribbble (Pour les créatifs)
 Si tu préfères créer ton propre design, tu peux t'inspirer d'un design mobile sur **[Dribbble](https://dribbble.com/)**.
@@ -60,7 +60,7 @@ Si tu préfères créer ton propre design, tu peux t'inspirer d'un design mobile
    > **💡 Pourquoi ces packages ?**
    > - `url_launcher` : Permet d'ouvrir des liens externes (sites web, LinkedIn, etc.)
    > - `share_plus` : Permet de partager du contenu depuis ton app
-   > - `font_awesome_flutter` : Donne accès à des milliers d'icônes professionnelles (Flutter, React, Angular, etc.)
+   > - `font_awesome_flutter` : Donne accès à des milliers d'icônes (Flutter, React, Angular, etc.)
    > - `google_fonts` : Permet d'utiliser facilement les polices Google Fonts
    >
    > **💡 Qu'est-ce que `flutter pub add` ?**
@@ -72,7 +72,7 @@ Si tu préfères créer ton propre design, tu peux t'inspirer d'un design mobile
    - `qrcode.png` : un QR code vers ton LinkedIn ou autre
    - `logo.png` : un petit logo (optionnel)
 
-   Puis déclare-les dans le fichier `pubspec.yaml` :
+   Puis déclare-les dans le fichier `pubspec.yaml` (tu peux aussi regarder si tes dépdandances ont été ajoutées correctement au dessus) :
    ```yaml
    flutter:
      assets:
@@ -89,7 +89,6 @@ Ouvre `lib/main.dart` et reprend cet exemple :
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -141,7 +140,7 @@ class PortfolioPage extends StatelessWidget {
 
 On va créer un widget personnalisé `ProfileHeader` qui affiche une image de fond et une photo de profil par-dessus.
 
-**Reprend cette classe à la fin de ton fichier** :
+**Reprend cette classe à la fin de ton fichier (ne fais pas le flemmard à copier-coller, comme ça tu adaptes à ta convenance au fur et à mesure que tu réécris)** :
 
 ```dart
 class ProfileHeader extends StatelessWidget {
@@ -193,7 +192,7 @@ class ProfileHeader extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.share, color: Colors.white, size: 30),
               onPressed: () {
-                Share.share('Découvrez mon portfolio !');
+                // Partager quelque chose
               },
             ),
           ),
@@ -258,7 +257,7 @@ children: [
 
 On va créer une belle carte avec tes infos personnelles (nom, date de naissance, ville, profession).
 
-**Ajoute cette classe à la fin du fichier** :
+**Ajoute cette classe à la fin du fichier (tu peux essayer de le faire sans regarder le code si t'es chaud en te basant sur le visuel)** :
 
 ```dart
 class InfoCard extends StatelessWidget {
@@ -399,13 +398,11 @@ class QrCard extends StatelessWidget {
 }
 ```
 
-> **💡 Pourquoi ?** Cette carte utilise le même principe que l'InfoCard, mais avec un gradient bleu et affiche une image de QR code.
-
 ---
 
 ## 🪜 Étape 6 — Assembler les deux cartes côte à côte avec des rotations
 
-Maintenant on va placer nos deux cartes côte à côte, et les faire légèrement tourner pour un effet moderne !
+Maintenant on va placer nos deux cartes côte à côte, et les faire légèrement tourner !
 
 **Dans `PortfolioPage`, ajoute après le `SizedBox(height: 80)` :**
 
@@ -600,10 +597,10 @@ Image.asset('assets/images/logo.png', width: 100),
 
 À la fin du TP, ton application doit :
 - Afficher une bannière avec photo de profil
-- Montrer deux cartes stylisées (infos + QR code) avec effet de rotation
+- Montrer des cartes stylisées avec effet de rotation
 - Afficher une rangée d'icônes de technologies cliquables
-- Avoir un bouton de partage fonctionnel
 - Utiliser des gradients et des ombres pour un rendu sympatoche
+- Ou au moins être propre et agréable à regarder si tu t'es basé sur un design libre
 
 ---
 
@@ -638,22 +635,22 @@ Change les angles de rotation pour des effets différents.
 | Critère | Détails | Points |
 |----------|----------|--------|
 | **Structure du projet** | Organisation des fichiers, code clair, indentation correcte | 3 |
-| **Widgets personnalisés** | Création et utilisation de widgets réutilisables (minimum 2) | 4 |
+| **Widgets personnalisés** | Création et utilisation de widgets réutilisables | 4 |
 | **Code et bonnes pratiques** | Respect des conventions Flutter/Dart, pas d'erreurs, code lisible | 2 |
 | **Affichage du profil** | Présentation des informations personnelles (photo, nom, infos, etc.) | 3 |
-| **Interactions** | Fonctionnalités interactives (liens cliquables, partage, etc.) | 3 |
+| **Interactions** | Fonctionnalités interactives (liens cliquables, plus si tu le souhaites...) | 3 |
 | **Design et esthétique** | Qualité visuelle, cohérence, utilisation de styles (couleurs, marges, ombres) | 3 |
 | **Créativité et originalité** | Personnalisation du design, choix esthétiques, initiative | 2 |
 | **Total** |  | **/20** |
 
 > **Pour l'option design libre** : Le critère "Créativité et originalité" sera valorisé si tu proposes un design innovant et bien réalisé.
 
-### 🎁 Bonus (+2 points possibles)
+### 🎁 Bonus (+1 point possible)
 
-#### Bonus 1 : Animations (+1 point)
-Ajouter une animation au tap sur les TechIcon (scale, rotation, etc.) avec `AnimatedContainer` ou `Hero`.
+#### Bonus 1 : Animations (+0.5 point)
+Ajouter une animation au tap sur les TechIcon (scale, rotation, etc.) avec `AnimatedContainer` ou autre.
 
-#### Bonus 2 : Partage d'image (+1 point)
+#### Bonus 2 : Partage d'image (+0.5 point)
 Modifier le bouton de partage pour partager une image depuis les assets (une capture d'écran de ton profil) avec `share_plus`.
 
 ---

@@ -9,51 +9,35 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
-<img src="../img/tp3_1.png" width="400" alt="Exemple final">
+<img src="../img/tp3_1.png" width="300" alt="Exemple final">
 
 ---
 
-## 🪜 Étape 1 — Créer le projet
+## 🪜 Étape 1 — Préparer les données
 
-1. Dans ton terminal :
-   ```bash
-   flutter create tp3_nom_prenom
-   cd tp3_nom_prenom
-   ```
-2. Ouvre le dossier dans VS Code ou Android Studio.  
-3. Mets à jour les packages :
-   ```bash
-   flutter pub get
-   ```
-4. Crée un dossier `assets/data/` et ajoute un fichier `movies.json` :
-   ```json
-   [
-     {
-       "title": "Inception",
-       "year": 2010,
-       "poster": "https://image.tmdb.org/t/p/w500/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg",
-       "description": "Un voleur qui s'infiltre dans les rêves des gens pour voler leurs secrets se voit confier une mission impossible : implanter une idée dans l'esprit d'un PDG."
-     },
-     {
-       "title": "Interstellar",
-       "year": 2014,
-       "poster": "https://image.tmdb.org/t/p/w500/1pnigkWWy8W032o9TKDneBa3eVK.jpg",
-       "description": "Une équipe d'explorateurs voyage à travers un trou de ver dans l'espace pour assurer la survie de l'humanité face à la fin de la Terre."
-     },
-     {
-       "title": "The Dark Knight",
-       "year": 2008,
-       "poster": "https://image.tmdb.org/t/p/w500/pyNXnq8QBWoK3b37RS6C3axwUOy.jpg",
-       "description": "Batman affronte le Joker, un criminel chaotique qui plonge Gotham dans l'anarchie et force le chevalier noir à affronter ses propres limites morales."
-     }
-   ]
-   ```
-5. Déclare les assets dans `pubspec.yaml` :
-   ```yaml
-   flutter:
-     assets:
-       - assets/data/movies.json
-   ```
+Crée un dossier `assets/data/` et ajoute un fichier `movies.json` :
+```json
+[
+  {
+    "title": "Inception",
+    "year": 2010,
+    "poster": "https://image.tmdb.org/t/p/w500/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg",
+    "description": "Un voleur qui s'infiltre dans les rêves des gens pour voler leurs secrets se voit confier une mission impossible : implanter une idée dans l'esprit d'un PDG."
+  },
+  {
+    "title": "Interstellar",
+    "year": 2014,
+    "poster": "https://image.tmdb.org/t/p/w500/1pnigkWWy8W032o9TKDneBa3eVK.jpg",
+    "description": "Une équipe d'explorateurs voyage à travers un trou de ver dans l'espace pour assurer la survie de l'humanité face à la fin de la Terre."
+  },
+  {
+    "title": "The Dark Knight",
+    "year": 2008,
+    "poster": "https://image.tmdb.org/t/p/w500/pyNXnq8QBWoK3b37RS6C3axwUOy.jpg",
+    "description": "Batman affronte le Joker, un criminel chaotique qui plonge Gotham dans l'anarchie et force le chevalier noir à affronter ses propres limites morales."
+  }
+]
+```
 
 ---
 
@@ -98,14 +82,14 @@ class MovieService {
 ```
 
 > **💡 Notions clés expliquées :**
-> - **Future** : Représente une valeur qui sera disponible "dans le futur". Comme commander une pizza : tu n'as pas encore la pizza (Future), mais tu l'auras bientôt.
-> - **async/await** : `async` dit "cette fonction va prendre du temps", `await` dit "attends ici que ça se termine". C'est comme attendre que ton café soit prêt avant de le boire.
+> - **Future** : Représente une valeur qui sera disponible "dans le futur". Comme commander une pizza : tu n'as pas encore la pizza (Future), mais tu l'auras bientôt si le livreur arrive (on espère).
+> - **async/await** : `async` dit "cette fonction va prendre du temps", `await` dit "attends ici que ça se termine". C'est comme attendre que ton café soit prêt avant de le boire (sinon, c'est chaud !).
 > - **factory constructor** : Une méthode spéciale pour créer des objets. Ici, `Movie.fromJson()` transforme des données brutes JSON en objet Movie structuré.
 > - **rootBundle.loadString()** : Charge un fichier texte depuis les assets (comme lire un fichier sur le disque).
 
 ---
 
-## 🪜 Étape 3 — Afficher la liste des films (version simple)
+## 🪜 Étape 3 — Afficher la liste des films
 
 Commençons par créer une liste simple sans favoris pour bien comprendre les bases.
 
@@ -252,7 +236,6 @@ class MovieCard extends StatelessWidget {
 ```
 
 > **💡 Notions clés expliquées :**
-> - **Extraction de widget** : `MovieCard` est un widget séparé réutilisable. C'est une bonne pratique pour éviter la duplication de code.
 > - **VoidCallback** : Type pour une fonction qui ne prend aucun paramètre et ne retourne rien. Équivalent à `void Function()`.
 
 ### 4.2 — Modifier MovieListPage pour utiliser MovieCard et gérer les favoris
@@ -324,59 +307,21 @@ class _MovieListPageState extends State<MovieListPage> {
 
 ### 4.3 — Créer la page des favoris
 
-Ajoute cette classe **à la fin** du fichier `lib/movie_list_page.dart` (avant `MovieCard`) :
+À toi de jouer ! Crée un `StatefulWidget` nommé `FavoritesPage` **à la fin** du fichier `lib/movie_list_page.dart` (avant `MovieCard`).
 
-```dart
-class FavoritesPage extends StatefulWidget {
-  final Set<String> favorites;
-  final List<Movie> movies;
-  final void Function(String) toggleFavorite;
+Cette page doit recevoir 3 paramètres dans son constructeur :
+- `favorites` : le Set contenant les titres favoris
+- `movies` : la liste complète des films
+- `toggleFavorite` : la fonction pour ajouter/retirer des favoris
 
-  const FavoritesPage({
-    super.key,
-    required this.favorites,
-    required this.movies,
-    required this.toggleFavorite,
-  });
+Dans le `build()`, filtre la liste des films pour ne garder que ceux qui sont dans les favoris (utilise `.where()` puis `.toList()`). Affiche-les ensuite dans une `ListView.builder` en utilisant le widget `MovieCard` avec `favoriteIcon: Icons.delete` pour retirer un favori. Si la liste est vide, affiche un message au centre.
 
-  @override
-  State<FavoritesPage> createState() => _FavoritesPageState();
-}
+> **💡 Notions clés à utiliser :**
+> - **where()** : Filtre une liste selon une condition (garde seulement certains éléments)
+> - **toList()** : Convertit un `Iterable` en `List`
+> - **Réutilisation de widget** : Le même `MovieCard` peut être utilisé dans plusieurs contextes différents
 
-class _FavoritesPageState extends State<FavoritesPage> {
-  void _removeFavorite(String title) {
-    widget.toggleFavorite(title);
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final favMovies = widget.movies.where((m) => widget.favorites.contains(m.title)).toList();
-
-    return Scaffold(
-      appBar: AppBar(title: const Text('❤️ Mes favoris')),
-      body: favMovies.isEmpty
-          ? const Center(child: Text('Aucun favori pour le moment.'))
-          : ListView.builder(
-              itemCount: favMovies.length,
-              itemBuilder: (context, index) => MovieCard(
-                movie: favMovies[index],
-                isFavorite: true,
-                onFavoriteTap: () => _removeFavorite(favMovies[index].title),
-                favoriteIcon: Icons.delete,
-              ),
-            ),
-    );
-  }
-}
-```
-
-> **💡 Notions clés expliquées :**
-> - **where()** : Filtre une liste. Ici, on garde seulement les films dont le titre est dans les favoris.
-> - **toList()** : Convertit le résultat du filtre en liste. Nécessaire car `where()` retourne un `Iterable`.
-> - **Réutilisation de widget** : On utilise le même `MovieCard` pour la liste principale et les favoris, avec juste un paramètre différent (`favoriteIcon`).
-
-✅ Teste ton app : tu peux maintenant ajouter des favoris et voir la page dédiée !
+✅ Teste ton app : tu devrais pouvoir ajouter des favoris et voir la page dédiée !
 
 ---
 
@@ -451,7 +396,7 @@ class MovieCard extends StatelessWidget {
 ```
 
 > **💡 Notion clé :**
-> - **InkWell** : Rend un widget cliquable avec un effet de "vague" visuel au toucher (Material Design).
+> - **InkWell** : Rend un widget cliquable avec un effet de "vague" visuel au toucher (Ripple effect du Material Design).
 
 ### 5.2 — Créer la page de détails
 
@@ -546,7 +491,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 }
 ```
 
-<img src="../img/tp3_2.png" width="400" alt="Exemple final">
+<img src="../img/tp3_2.png" width="300" alt="Exemple final">
 
 > **💡 Notions clés expliquées :**
 > - **late** : Indique qu'une variable sera initialisée plus tard, mais avant d'être utilisée. Ici, `late bool isFavorite` est initialisée dans `initState()`.
@@ -589,7 +534,7 @@ class MyApp extends StatelessWidget {
 
 ---
 
-## 🪜 Étape 7 — Améliorer l'interface (optionnel)
+## 🪜 Étape 7 — Améliorer l'interface
 
 Quelques idées pour aller plus loin :
 - Transformer la liste en **grille** (`GridView.builder`) avec un bouton pour basculer entre les modes
@@ -633,28 +578,28 @@ Quelques idées pour aller plus loin :
 | **Gestion des favoris** | Ajout/suppression fonctionnels sur liste et détails | 3 |
 | **Page de détails** | Page complète avec poster, synopsis, année | 3 |
 | **Navigation** | Transitions fluides entre les 3 pages | 2 |
-| **Gestion des erreurs** | `errorBuilder` pour les images qui ne chargent pas | 2 |
+| **Page des favoris** | Création autonome et fonctionnelle de la FavoritesPage | 2 |
 | **Design et ergonomie** | Couleurs, marges, icônes, lisibilité | 2 |
 | **Code et bonnes pratiques** | Extraction de widgets, style Flutter/Dart propre | 2 |
-| **Total** |  | **/20 + 2 bonus** |
+| **Total** |  | **/20** |
 
 ---
 
 ### 🎁 Bonus (+2 points possibles)
-*Tu peux réaliser les 3 si tu veux, mais la note bonus plafonne à +2.*
 
-#### Bonus 1 : Tests unitaires pour MovieService (+1 point)
+#### Bonus 1 : Tests unitaires pour MovieService (+1 point) - [Documentation tests unitaires](https://docs.flutter.dev/cookbook/testing/unit/introduction)
 Créer un fichier `test/movie_service_test.dart` et écrire au moins 3 tests unitaires qui vérifient :
 - Le chargement correct des données depuis le JSON
 - Le parsing et la conversion en objets `Movie`
 - Le nombre de films retournés correspond au JSON
+- ou autre chose de pertinent si tu veux !
 
-#### Bonus 2 : GridView avec plusieurs modes d'affichage (+1 point)
+#### Bonus 2 : GridView avec plusieurs modes d'affichage (+0.5 point)
 Ajouter un bouton dans l'AppBar pour basculer entre deux modes d'affichage :
 - Mode Liste (`ListView`) : affichage actuel
 - Mode Grille (`GridView.builder`) : affichage en grille 2 colonnes avec cartes visuelles
 
-#### Bonus 3 : Ajout de filtres et tri (+1 point)
+#### Bonus 3 : Ajout de filtres et tri (+0.5 point)
 Améliorer l'expérience utilisateur avec des fonctionnalités de filtrage :
 - Ajouter un menu déroulant pour trier les films
 - Ajouter une barre de recherche pour filtrer par titre
@@ -677,23 +622,6 @@ Si les images ne s'affichent pas correctement (notamment après un changement de
 4. Sélectionne **Cold Boot Now**
 
 Cela peut résoudre les problèmes de cache réseau et d'affichage des images.
-
-### 🏗️ Architecture : Instance globale du service
-Dans ce TP, `movieService` est définie comme une **instance globale** au niveau du `main.dart` et passée en paramètre à `MovieListPage`. Cela garantit qu'une seule instance du service existe dans toute l'application. C'est une bonne pratique car :
-- Facilite les tests unitaires (on peut remplacer l'instance facilement)
-- Permet d'ajouter facilement du cache ou de la configuration
-- Prépare le terrain pour évoluer vers une API sans tout réécrire
-- Évite de créer plusieurs instances inutiles du même service
-
-### 📁 Organisation des fichiers
-- `lib/pages/movie_list_page.dart`
-- `lib/pages/favorites_page.dart`
-- `lib/pages/movie_detail_page.dart`
-- `lib/widgets/movie_card.dart`
-- `lib/services/movie_service.dart`
-- `lib/models/movie.dart`
-
-Cette séparation améliore la maintenabilité et la testabilité du code.
 
 ### ⚠️ Limitations actuelles
 - **Favoris non persistants** : Les favoris sont stockés en mémoire (`Set<String>`) et sont perdus à chaque redémarrage de l'application. Pour les conserver, il faudrait utiliser un système de stockage local comme `shared_preferences` ou `hive` !

@@ -119,7 +119,7 @@ Chaque séance de TP suit le déroulé suivant :
    - Objectif : partager les solutions, apprendre des autres, s'entraîner à présenter son travail
 
 2. **Widget of the Week** (10 min)
-   - Visionnage collectif de 1/2 vidéos "Widget of the Week" de Flutter
+   - À chaque séance, un étudiant est **tiré au sort** et on visionne la vidéo "Widget of the Week" du widget qu'il a choisi
    - Ces vidéos courtes (1-2 min chacune) présentent des widgets utiles pour vos TPs
    - Playlist : https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG
 

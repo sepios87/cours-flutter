@@ -48,6 +48,24 @@ Tu dois voir :
 
 ---
 
+## 🪜 Étape 1 bis — Alternative avec FVM (Flutter Version Manager)
+
+Si vous ne souhaitez pas installer Flutter "en dur" sur votre système ou si vous voulez gérer plusieurs versions facilement, vous pouvez utiliser **FVM**.
+
+1. Installez FVM : https://fvm.app/docs/getting_started/installation
+2. Installez la version stable de Flutter :
+   ```bash
+   fvm install stable
+   fvm use stable --global
+   ```
+3. Pour utiliser Flutter avec FVM, préfixez vos commandes par `fvm` :
+   ```bash
+   fvm flutter doctor
+   fvm flutter create mon_projet
+   ```
+
+---
+
 ## 🪜 Étape 2 — Installer VS Code
 
 1. Télécharge VS Code : https://code.visualstudio.com/
@@ -76,6 +94,9 @@ Android Studio permet de lancer l'application sur un émulateur Android.
    - Choisis un modèle (ex : **Pixel 6**)
    - Télécharge une image système (ex : **Android 13**)
    - Clique sur **Finish**
+
+<img src="../img/device_manager.png" width="400" alt="Device manager">
+
 
 5. **Lance l'émulateur** :
    - Dans Device Manager, clique sur le bouton ▶️ à côté de ton émulateur
@@ -170,7 +191,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Je m\'appelle [Ton Prénom]',
+              "Je m'appelle [Ton Prénom]",
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 40),
@@ -188,7 +209,7 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-<img src="../img/hello_world_flutter.png" width="400" alt="hello world flutter">
+<img src="../img/hello_world_flutter.png" width="300" alt="hello world flutter">
 
 ### ✅ Checkpoint : Teste le Hot Reload
 

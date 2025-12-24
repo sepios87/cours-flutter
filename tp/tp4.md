@@ -10,7 +10,9 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
-<img src="../img/tp4_1.png" width="400" alt="Exemple final">
+<p align="center">
+  <img src="../img/tp4_1.png" width="300" alt="Exemple final">
+</p>
 
 ---
 
@@ -37,7 +39,7 @@ Si tu as déjà fait le TP3, tu vas migrer ton projet vers une API réelle.
    - **Déplace** `lib/movie_list_page.dart` vers `lib/pages/movie_list_page.dart`
    - **Supprime** les références à `assets/data/movies.json` dans `pubspec.yaml`
 
-4. **Ajoute les dépendances Dio et url_launcher** dans `pubspec.yaml` :
+4. **Ajoute les dépendances Dio et url_launcher** dans `pubspec.yaml` ou fait les commandes d'installation :
    ```yaml
    dependencies:
      flutter:
@@ -53,20 +55,7 @@ Si tu as déjà fait le TP3, tu vas migrer ton projet vers une API réelle.
 
 ### Option B : Créer un nouveau projet
 
-Si tu préfères repartir de zéro :
-
-1. Crée un nouveau projet :
-   ```bash
-   flutter create tp4_nom_prenom
-   cd tp4_nom_prenom
-   ```
-
-2. Crée la structure de dossiers :
-   ```bash
-   mkdir -p lib/models lib/services lib/pages
-   ```
-
-3. Ajoute les dépendances **Dio** et **url_launcher** dans `pubspec.yaml` :
+1. Ajoute les dépendances **Dio** et **url_launcher** dans `pubspec.yaml` :
    ```yaml
    dependencies:
      flutter:
@@ -75,14 +64,16 @@ Si tu préfères repartir de zéro :
      url_launcher: ^6.2.0
    ```
 
-4. Mets à jour les packages :
+2. Mets à jour les packages :
    ```bash
    flutter pub get
    ```
 
-### Obtenir la clé API Watchmode (ou autre si tu préfères)
+### Obtenir la clé API Watchmode (ou regarde d'autres services si tu préfères)
 
-<img src="../img/watchmode_api.png" width="400" alt="Watchmode">
+<p align="center">
+  <img src="../img/watchmode_api.png" width="400" alt="Watchmode">
+</p>
 
 - Va sur https://api.watchmode.com/
 - Crée un compte gratuit
@@ -459,51 +450,7 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 }
 
-class FavoritesPage extends StatefulWidget {
-  final MovieService movieService;
-  final Set<int> favorites;
-  final List<MovieListItem> movies;
-  final void Function(int) toggleFavorite;
-
-  const FavoritesPage({
-    super.key,
-    required this.movieService,
-    required this.favorites,
-    required this.movies,
-    required this.toggleFavorite,
-  });
-
-  @override
-  State<FavoritesPage> createState() => _FavoritesPageState();
-}
-
-class _FavoritesPageState extends State<FavoritesPage> {
-  void _removeFavorite(int movieId) {
-    widget.toggleFavorite(movieId);
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final favMovies = widget.movies.where((m) => widget.favorites.contains(m.id)).toList();
-
-    return Scaffold(
-      appBar: AppBar(title: const Text('❤️ Mes favoris')),
-      body: favMovies.isEmpty
-          ? const Center(child: Text('Aucun favori pour le moment.'))
-          : ListView.builder(
-              itemCount: favMovies.length,
-              itemBuilder: (context, index) => MovieListCard(
-                movieService: widget.movieService,
-                movie: favMovies[index],
-                isFavorite: true,
-                onFavoriteTap: () => _removeFavorite(favMovies[index].id),
-                favoriteIcon: Icons.delete,
-              ),
-            ),
-    );
-  }
-}
+// TODO: Créer la classe FavoritesPage ici (voir TP3 pour référence)
 
 class MovieListCard extends StatelessWidget {
   final MovieService movieService;
@@ -808,7 +755,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 }
 ```
 
-<img src="../img/tp4_2.png" width="400" alt="Exemple final">
+<p align="center">
+  <img src="../img/tp4_2.png" width="300" alt="Exemple final">
+</p>
 
 > **💡 Notions clés expliquées :**
 > - **Chargement dynamique** : La page ne reçoit que l'ID du film et fait elle-même l'appel API pour récupérer les détails. C'est plus flexible et économise de la mémoire.
@@ -856,26 +805,6 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-> **💡 Architecture : Instance globale du service**
->
-> Dans ce TP, `movieService` est définie comme une **instance globale** et passée en paramètre à tous les widgets qui en ont besoin. Cela garantit qu'une seule instance du service (et donc de Dio) existe dans toute l'application.
->
-> **Avantages de cette approche :**
-> - ✅ **Une seule instance de Dio** : Optimise les ressources et les connexions réseau
-> - ✅ **Cache partagé** : Si on ajoute un cache plus tard, toutes les pages l'utilisent
-> - ✅ **Testabilité** : On peut facilement remplacer le service par un mock dans les tests
-> - ✅ **Maintenabilité** : Changer la configuration du service se fait en un seul endroit
->
-> **❌ À éviter :**
-> ```dart
-> // Mauvaise pratique : créer une nouvelle instance dans chaque widget
-> class _MovieListPageState extends State<MovieListPage> {
->   final MovieService _movieService = MovieService(); // ❌ Crée un nouveau Dio à chaque fois
-> }
-> ```
->
-> Cette approche prépare aussi le terrain pour des patterns plus avancés comme l'injection de dépendances (Provider, Riverpod, GetIt, etc.) que tu verras dans des TPs futurs !
-
 ✅ Teste ton application : tu devrais voir une liste de films récents chargés depuis l'API Watchmode !
 
 ---
@@ -918,7 +847,7 @@ class MyApp extends StatelessWidget {
 | **url_launcher** | Ouverture des bandes-annonces dans le navigateur, gestion d'erreurs | 2 |
 | **Extraction de widgets** | `MovieListCard` et instance globale du service | 2 |
 | **Navigation et UX** | Navigation fluide, gestion des favoris, design cohérent | 3 |
-| **Total** |  | **/20 + 2 bonus** |
+| **Total** |  | **/20** |
 
 ---
 
@@ -994,13 +923,3 @@ Si les images ne s'affichent pas correctement (notamment après un changement de
 - [Dio Package](https://pub.dev/packages/dio)
 - [url_launcher Package](https://pub.dev/packages/url_launcher)
 - [Guide Flutter sur les appels HTTP](https://docs.flutter.dev/cookbook/networking/fetch-data)
-
-### 🔄 Différences avec le TP3
-Dans le TP3, tu chargeais des données depuis un JSON local. Maintenant tu :
-- Charges des données depuis une **API réelle** avec Dio
-- Gères les **états de chargement et les erreurs réseau**
-- Fais **plusieurs appels API** (liste puis détails)
-- Travailles avec des **données dynamiques** qui changent dans le temps
-- Apprends à **sécuriser une clé API**
-- Gères le **chargement à la demande** (les détails ne sont chargés que quand on clique)
-- Ouvres des **URLs externes** avec url_launcher (bandes-annonces YouTube)

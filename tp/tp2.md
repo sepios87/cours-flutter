@@ -8,7 +8,7 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
-<img src="../img/tp2_1.png" width="400" alt="Quiz Flutter">
+<img src="../img/tp2_1.png" width="300" alt="Quiz Flutter">
 
 ---
 
@@ -206,7 +206,7 @@ Inspire-toi des guidelines Material Design !
 - Afficher un **écran de résultat** clair et redémarrer le quiz
 - Avoir un **design personnalisé et agréable**
 
-<img src="../img/tp2_2.png" width="400" alt="Quiz Flutter">
+<img src="../img/tp2_2.png" width="300" alt="Quiz Flutter">
 
 ---
 
@@ -230,13 +230,17 @@ Inspire-toi des guidelines Material Design !
 | **Design et ergonomie** | UI soignée, marges, cohérence visuelle | 3 |
 | **Code et bonnes pratiques** | Respect des conventions Flutter/Dart, propreté du code | 2 |
 | **Créativité et personnalisation** | Améliorations visuelles, animations, styles | 3 |
-| **Total** |  | **/20 + 2 bonus** |
+| **Total** |  | **/20** |
 
 ---
 
-### 🎁 Bonus (+2 points possibles)
-1. Ajouter un **timer** pour chaque question (compte à rebours)
-2. Créer une **page “Meilleurs scores”** qui affiche les meilleurs résultats enregistrés localement
+### 🎁 Bonus (+1.5 points possibles)
+
+#### Bonus 1 : Timer (+0.5 point)
+Ajouter un **timer** pour chaque question (compte à rebours) et passer automatiquement à la suivante si le temps est écoulé (sans donner de point).
+
+#### Bonus 2 : Meilleurs scores (+1 point)
+Créer une **page “Meilleurs scores”** qui affiche les meilleurs résultats enregistrés localement avec `shared_preferences`.
 
 ---
 
