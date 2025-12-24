@@ -11,7 +11,7 @@
 
 ---
 
-![Exemple final](img/tp1.png)
+![Exemple final](../img/tp1.png)
 
 ## 🎨 Deux approches possibles
 

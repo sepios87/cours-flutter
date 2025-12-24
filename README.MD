@@ -143,6 +143,19 @@ Le module est organisé en **7 séances d'environ 2h30 (soit 17h30)** :
 
 ---
 
+## 📚 Glossaire des TPs
+
+Retrouvez ci-dessous les liens directs vers les sujets de chaque TP :
+
+- [TP0 – Configuration de l'environnement et premiers pas](./tp/tp0.md)
+- [TP1 – Carte de profil interactive](./tp/tp1.md)
+- [TP2 – Quiz interactif avec score](./tp/tp2.md)
+- [TP3 – Liste de films avec favoris (JSON local)](./tp/tp3.md)
+- [TP4 – Liste de films avec API (Watchmode) et Dio](./tp/tp4.md)
+- [TP5 – Projet final en binôme](./tp/tp5.md)
+
+---
+
 ## 🧰 Bonnes pratiques à suivre dans tous les TPs
 
 - Toujours nommer vos projets `tpX_nom_prenom`

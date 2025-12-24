@@ -44,7 +44,7 @@ Tu dois voir :
 **❌ Si `[✗] Flutter` :** Reprends l'installation et vérifie le PATH
 **⚠️ Si `[!]` :** C'est normal, continue !
 
-![flutter doctor](./img/flutter_doctor.png)
+![flutter doctor](../img/flutter_doctor.png)
 
 ---
 
@@ -54,7 +54,7 @@ Tu dois voir :
 2. Installe l'extension **Flutter** (Ctrl+Shift+X ou Cmd+Shift+X)
    - L'extension Dart s'installera automatiquement
 
-![vs code flutter](./img/flutter_vscode.png)
+![vs code flutter](../img/flutter_vscode.png)
 
 ---
 
@@ -188,7 +188,7 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-![hello world flutter](img/hello_world_flutter.png)
+![hello world flutter](../img/hello_world_flutter.png)
 
 ### ✅ Checkpoint : Teste le Hot Reload
 

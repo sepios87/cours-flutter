@@ -10,7 +10,7 @@
 
 🕐 **Durée estimée : 2 à 3 heures**
 
-![Exemple final](img/tp4_1.png)
+![Exemple final](../img/tp4_1.png)
 
 ---
 
@@ -82,7 +82,7 @@ Si tu préfères repartir de zéro :
 
 ### Obtenir la clé API Watchmode (ou autre si tu préfères)
 
-![Watchmode](img/watchmode_api.png)
+![Watchmode](../img/watchmode_api.png)
 
 - Va sur https://api.watchmode.com/
 - Crée un compte gratuit
@@ -808,7 +808,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 }
 ```
 
-![Exemple final](img/tp4_2.png)
+![Exemple final](../img/tp4_2.png)
 
 > **💡 Notions clés expliquées :**
 > - **Chargement dynamique** : La page ne reçoit que l'ID du film et fait elle-même l'appel API pour récupérer les détails. C'est plus flexible et économise de la mémoire.
