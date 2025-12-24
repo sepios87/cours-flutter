@@ -164,3 +164,26 @@ Le module est organisé en **7 séances d'environ 2h30 (soit 17h30)** :
 - Respecter la **structure Flutter standard** (`lib/`, `assets/`, etc.)
 - Ne pas laisser de code inutilisé ou de variables non nommées clairement
 - **⏱️ Règle des 10 minutes** : Bloqué ? Appelez l'enseignant ! Ne perdez pas de temps à tourner en rond
+
+---
+
+## 🤖 Utilisation de l'IA
+
+### ✅ Autorisé et encouragé :
+- **Copilot/autocomplete** : Pas de problème pour l'autocomplétion, mais lisez et comprenez ce qui est généré sur la ligne en question (ca fait quand mêmegagner un temps fou)
+- **Poser des questions** : ChatGPT, Claude, Codex, Mixtral, etc. pour comprendre des concepts ou débloquer des problèmes
+- **Aide au debugging** : Demander de l'aide pour comprendre une erreur et ne pas rester bloqué
+- **Apprentissage** : Utiliser l'IA pour apprendre et comprendre de nouvelles notions
+
+### ❌ Pas trop cool :
+- **Tout faire générer par l'IA** : Si vous copiez-collez du code sans le comprendre, ça se verra
+- **Code trop clean trop vite** : Un code parfait et volumineux produit en quelques heures est suspect (mais possible en soit)
+- **Ne pas comprendre son propre code** : Vous devez pouvoir expliquer chaque ligne de votre projet
+
+### ⚠️ Attention si vous suivez l'option pas trop cool :
+- Si je constate du code très propre produit très rapidement, **je poserai des questions** sur votre code pendant le TP suivant
+- Si vous savez expliquer et comprendre ce que vous avez fait (même généré avec l'IA) : ✅ **pas de problème**
+- Si vous ne savez pas expliquer votre code ou ne comprenez pas ce qu'il fait : ❌ **TP noté sur 15** car on ne peut pas te laiser tous les crédits sur un truc que tu ne comprends pas quand même !
+
+### 💡 Conseil :
+Utilisez l'IA comme un **tuteur**, pas comme un **remplaçant**. L'objectif est d'apprendre, pas juste de produire du code. Si vous ne comprenez pas quelque chose que l'IA a généré, demandez-lui de vous l'expliquer avant de l'intégrer. En entreprise, vous pourrez utiliser l'IA pour générer des choses que vous pourrez ne pas comprendre si c'est necessaire (même si vous aurez du mal à le maintenir), mais ici l'objectif est d'apprendre à coder vous-même ;)

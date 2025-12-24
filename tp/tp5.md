@@ -2,7 +2,7 @@
 
 ## 🎯 Objectifs
 - Concevoir et développer une **application Flutter complète en binôme**
-- Appliquer l'ensemble des notions vues dans les TPs précédents
+- Appliquer l'ensemble des notions vues dans les TPs précédents et plus encore
 - Faire des choix techniques et architecturaux
 - Travailler en équipe avec Git
 - Produire une application fonctionnelle et/ou esthétique selon vos objectifs
@@ -25,13 +25,13 @@
 Vous devez choisir **UNE** des trois orientations suivantes pour votre projet :
 
 ### 📊 Option 1 : Riche en fonctionnel
-**Focus : Aspect métier et technique fort**
+**Focus : Aspect métier et technique fort (elle peut êre vraiment moche ca ne me dérange pas)**
 
 Votre application doit respecter **TOUTES** les contraintes suivantes :
 - ✅ Un aspect **métier fort** avec logique complexe (calculs, algorithmes, workflows)
 - ✅ Utilisation de **stockage persistant** (local avec SharedPreferences/Hive/SQLite ou Firebase/Supabase)
 - ✅ Intégration d'**au moins un package** de pub.dev (hors stockage) pertinent pour votre métier
-- ✅ Consommation d'**une API** (publique ou créée par vous)
+- ✅ Consommation d'**une API** (publique, créée par vous, ou utilisation de Firebase/Supabase)
 
 > **💡 Pourquoi cette option ?**
 > Si vous aimez la logique, les algorithmes et résoudre des problèmes techniques complexes, cette option est pour vous. Vous allez créer une app avec une vraie "intelligence" métier (calculs, traitements de données, workflows), pas juste afficher des listes. Le design peut rester simple.
@@ -44,36 +44,46 @@ Votre application doit respecter **TOUTES** les contraintes suivantes :
 4. **App de révision avec flashcards** - Système de répétition espacée (SM-2), catégories, statistiques, import/export
 5. **Gestionnaire de bibliothèque personnelle** - Scan ISBN, suivi de lecture, statistiques annuelles, API Open Library
 
+#### 🌟 Les idées originales
+- **App anti-gaspillage alimentaire** - Scan de tickets de caisse, alertes avant péremption, suggestions de recettes avec les restes, statistiques de gaspillage en € et kg, API de recettes anti-gaspi
+- **Traducteur médical/administratif** - Convertit le jargon médical/légal en français simple, explications visuelles, OCR pour documents papier, API de définitions médicales
+
 ---
 
 ### 🎨 Option 2 : Riche en design
-**Focus : Interface utilisateur et expérience visuelle**
+**Focus : Interface utilisateur et expérience visuelle (intéractive quand même mais vous pouvez mettre du bullshit en données si ca vous fait plaisir)**
 
 Votre application doit respecter **TOUTES** les contraintes suivantes :
 - ✅ Design basé sur un **template mobile Dribbble** (avec lien dans le README)
 - ✅ Utilisation d'**images** (assets locaux ou réseau) de manière cohérente
 - ✅ Mise en place de **i18n** (internationalisation) avec au moins 2 langues
-- ✅ Intégration d'**au moins une animation** (Hero, AnimatedContainer, Lottie, etc.)
+- ✅ Intégration d'**animations** (Hero, AnimatedContainer, Lottie, etc.)
+- ✅ Gestion du **thème avancé** avec mode **light** et **dark** (switch dans paramètres, sauvegarde de la préférence, toute l'app s'adapte)
 
 > **💡 Pourquoi cette option ?**
 > Si vous aimez le design, les belles interfaces et l'expérience utilisateur, cette option est idéale. Vous allez reproduire un design pro de Dribbble et le rendre vivant avec des animations. La logique métier peut rester basique (affichage de listes, navigation simple).
 
 ### 💡 Besoin d'inspiration ? 5 idées de projets design
 
-1. **Portfolio créatif animé** - Présentation de projets avec Hero animations, transitions fluides, mode sombre/clair, multilingue
-2. **Application de méditation** - Design zen avec animations Lottie, sons d'ambiance, timer personnalisable, i18n FR/EN
-3. **Galerie d'art moderne** - Grille/liste de photos, zoom animé, filtres par catégorie, transitions Hero entre vues
-4. **App de mode/lookbook** - Catalogues de vêtements, carousel animé, filtres visuels, changement de langue dynamique
-5. **Journal intime visuel** - Design élégant avec animations d'écriture, thèmes personnalisables, photos, i18n
+1. **Portfolio créatif animé** - Présentation de projets avec Hero animations, transitions fluides, thème dark/light adaptatif, multilingue
+2. **Application de méditation** - Design zen avec animations Lottie, sons d'ambiance, timer personnalisable, mode jour/nuit pour confort visuel, i18n FR/EN
+3. **Galerie d'art moderne** - Grille/liste de photos, zoom animé, filtres par catégorie, transitions Hero entre vues, thème sombre pour mettre en valeur les œuvres
+4. **App de mode/lookbook** - Catalogues de vêtements, carousel animé, filtres visuels, thème clair/sombre selon l'heure, changement de langue dynamique
+5. **Journal intime visuel** - Design élégant avec animations d'écriture, mode lecture de nuit, thèmes personnalisables avec couleurs adaptatives, photos, i18n
+
+#### 🌟 Les idées originales
+- **App de suivi de sommeil visuel** - Graphiques de cycles en paysages nocturnes, animations jour/nuit, journal de rêves avec mood colors, thème adaptatif à l'heure
+- **App d'hydratation gamifiée** - Visualisation de remplissage avec animations fluides, plante virtuelle qui pousse avec l'hydratation, Hero animations, thème océanique light/dark, multilingue
 
 ---
 
 ### ⚖️ Option 3 : Équilibrée
-**Focus : Mix entre fonctionnel et design**
+**Focus : Mix entre fonctionnel et design (ma partie préférée)**
 
 Votre application doit respecter :
 - ✅ **Au moins 2 contraintes** de l'option "Riche en fonctionnel"
 - ✅ **Au moins 2 contraintes** de l'option "Riche en design"
+- Un respect de TOUTES les contraintes des autres parties = 1 point bonus directement (car respect)
 
 > **💡 Pourquoi cette option ?**
 > C'est l'option "tout terrain" pour ceux qui veulent un bon équilibre. Vous aurez une app fonctionnelle ET jolie, sans aller à l'extrême dans l'un ou l'autre. Idéal pour un profil généraliste ou si vous êtes deux avec des compétences complémentaires (un dev, un designer).
@@ -85,6 +95,10 @@ Votre application doit respecter :
 3. **Réseau social de photos** - Firebase pour stockage, timeline avec animations, filtres, likes/commentaires, design inspiré Instagram
 4. **Application de voyage/exploration** - API Google Places ou TripAdvisor, sauvegarde des destinations favorites, design moderne avec maps animées, filtres par catégorie, multilingue
 5. **App de fitness tracker** - Stockage local des entraînements, graphiques de progression, design motivant avec animations, API nutrition
+
+#### 🌟 Les idées originales
+- **Comparateur de prix courses** - Scan de code-barres, comparaison automatique entre magasins (API), historique des prix, alertes promotions, liste optimisée par magasin, visualisation graphique des économies
+- **Gestionnaire de prêts entre proches** - Liste de qui a emprunté quoi avec photos, rappels de retour, historique complet, notation d'état, calcul de valeur en cas de casse, design ludique
 
 ---
 
@@ -139,7 +153,7 @@ Votre README doit contenir :
 ### 3. **Vidéo de démonstration (2-3 minutes)**
 - Présentation rapide de l'application
 - Démonstration des fonctionnalités principales
-- Format : MP4, lien YouTube ou Loom
+- Format : MP4, lien YouTube
 - Uploadée sur le dépôt ou lien dans le README
 
 ### 4. **Code source**
@@ -187,14 +201,14 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 | **Documentation** | README complet, code commenté, instructions claires | 2 |
 | **Originalité et ambition** | Innovation, complexité du projet, features supplémentaires | 2 |
 | **Vidéo de démo** | Présentation claire, exhaustive et professionnelle | 1 |
-| **Total** |  | **/20 + 2 bonus** |
+| **Total** |  | **/20** |
 
 ---
 
-### 🎁 Bonus (+2 points possibles)
+### 🎁 Bonus (+1.5 points possibles)
 
-#### Bonus : Tests unitaires et/ou widgets (+2 points)
-Tests unitaires et/ou widgets significatifs (minimum 5 tests) couvrant les fonctionnalités principales de l'application.
+#### Bonus : Tests unitaires et de widgets (+1.5 points)
+Tests unitaires et widgets significatifs (minimum 5 à 10 tests par catégorie) couvrant les fonctionnalités principales de l'application.
 
 ---
 
