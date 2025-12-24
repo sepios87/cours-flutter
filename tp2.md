@@ -253,3 +253,11 @@ Dans ce TP, `setState()` est parfait pour gérer l'état local simple (score, qu
 - Tu veux séparer la logique métier de l'interface
 
 Pour des applications plus grandes, explore des solutions de gestion d'état comme **Provider**, **Riverpod** ou **Bloc**. Mais pour ce TP, `setState()` reste le bon choix !
+
+---
+
+## 📚 Ressources utiles
+
+- **StatefulWidget** : https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html
+- **SetState** : https://api.flutter.dev/flutter/widgets/State-class.html#setState
+- **Material Design Guidelines** : https://m3.material.io/

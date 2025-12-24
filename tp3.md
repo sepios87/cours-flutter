@@ -641,6 +641,7 @@ Quelques idées pour aller plus loin :
 ---
 
 ### 🎁 Bonus (+2 points possibles)
+*Tu peux réaliser les 3 si tu veux, mais la note bonus plafonne à +2.*
 
 #### Bonus 1 : Tests unitaires pour MovieService (+1 point)
 Créer un fichier `test/movie_service_test.dart` et écrire au moins 3 tests unitaires qui vérifient :
@@ -696,3 +697,11 @@ Cette séparation améliore la maintenabilité et la testabilité du code.
 
 ### ⚠️ Limitations actuelles
 - **Favoris non persistants** : Les favoris sont stockés en mémoire (`Set<String>`) et sont perdus à chaque redémarrage de l'application. Pour les conserver, il faudrait utiliser un système de stockage local comme `shared_preferences` ou `hive` !
+
+---
+
+## 📚 Ressources utiles
+
+- **ListView** : https://api.flutter.dev/flutter/widgets/ListView-class.html
+- **JSON et sérialisation** : https://docs.flutter.dev/data-and-backend/json
+- **FutureBuilder** : https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html

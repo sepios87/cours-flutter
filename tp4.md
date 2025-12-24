@@ -71,7 +71,7 @@ Si tu préfères repartir de zéro :
    dependencies:
      flutter:
        sdk: flutter
-     dio: ^5.4.0
+     dio: ^5.9.0
      url_launcher: ^6.2.0
    ```
 
@@ -923,6 +923,7 @@ class MyApp extends StatelessWidget {
 ---
 
 ### 🎁 Bonus (+2 points possibles)
+*Tu peux réaliser les 3 si tu veux, mais la note bonus plafonne à +2.*
 
 #### Bonus 1 : Chargement intelligent avec cache (+1 point)
 Ajouter un système de cache simple pour éviter de recharger les détails d'un film déjà consulté :
@@ -930,10 +931,13 @@ Ajouter un système de cache simple pour éviter de recharger les détails d'un 
 - Vérifier le cache avant de faire l'appel API
 - Afficher les données en cache pendant le rechargement pour une meilleure UX
 
-#### Bonus 2 : Jouer avec l'API (+1 point)
-Améliorer l'affichage avec différentes informations disponible dans l'API Watchmode :
-- Sur quelle plateforme le film est-il disponible (Netflix, Amazon, etc.) ? (curl -i 'https://api.watchmode.com/v1/title/345534/sources/?apiKey=YOUR_API_KEY')
-- Afficher les acteurs principaux (je te laisse rechercher dans la doc de l'API) https://api.watchmode.com/docs#tag/Title
+#### Bonus 2 : Où regarder le film ? (+1 point)
+Afficher sur quelles plateformes de streaming le film est disponible (Netflix, Amazon, Disney+, etc.).
+Endpoint utile : `/title/{id}/sources/`
+
+#### Bonus 3 : Casting du film (+1 point)
+Afficher la liste des acteurs principaux du film dans la page de détails.
+Endpoint utile : `/title/{id}/cast-crew/`
 
 ---
 
@@ -985,7 +989,7 @@ Si les images ne s'affichent pas correctement (notamment après un changement de
 3. Clique sur le menu ⋮ de ton émulateur
 4. Sélectionne **Cold Boot Now**
 
-### 🌐 Documentation utile
+### 🌐 Ressources utiles
 - [Watchmode API Documentation](https://api.watchmode.com/)
 - [Dio Package](https://pub.dev/packages/dio)
 - [url_launcher Package](https://pub.dev/packages/url_launcher)

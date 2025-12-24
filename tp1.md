@@ -675,3 +675,12 @@ Modifier le bouton de partage pour partager une image depuis les assets (une cap
 - Vérifie que les fichiers sont dans `assets/images/`
 - Vérifie la déclaration dans `pubspec.yaml`
 - Relance `flutter pub get`
+
+---
+
+## 📚 Ressources utiles
+
+- **Layout Cheat Sheet** : https://docs.flutter.dev/ui/layout
+- **Url Launcher** : https://pub.dev/packages/url_launcher
+- **Font Awesome Flutter** : https://pub.dev/packages/font_awesome_flutter
+- **Google Fonts** : https://pub.dev/packages/google_fonts
