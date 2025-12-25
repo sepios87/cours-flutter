@@ -88,8 +88,7 @@ Le barème est présenté sous forme de tableau avec plusieurs critères d'éval
 ---
 
 ### 8. **🎁 Bonus**
-Chaque TP comporte **jusqu'à 2 points bonus**.  
-Ces bonus sont des **défis facultatifs** permettant d'aller plus loin (et de briller en société).
+Chaque TP comporte des bonus qui sont des **défis facultatifs** permettant d'aller plus loin (et de briller en société).
 
 > 💡 Les bonus **n'ont pas d'instructions détaillées** : ils sont volontairement ouverts (oui, c'est fait exprès).
 > Vous devez chercher par vous-même comment les réaliser à partir des notions vues en cours ou à partir de recherches et de la documentation.
@@ -111,14 +110,14 @@ Ces bonus sont des **défis facultatifs** permettant d'aller plus loin (et de br
 
 Chaque séance de TP suit le déroulé suivant :
 
-### 🎬 **Début de séance (20-25 minutes)**
+### 🎬 **Début de séance (15 minutes)**
 
-1. **Présentation des TPs précédents** (10-15 min)
+1. **Présentation des TPs précédents** (10 min)
    - 1/2 étudiants tirés au sort présentent leur TP précédent devant la classe
    - Présentation de 5 minutes maximum par étudiant
    - Objectif : partager les solutions, apprendre des autres, s'entraîner à présenter son travail
 
-2. **Widget of the Week** (10 min)
+2. **Widget of the Week** (5 min)
    - À chaque séance, un étudiant est **tiré au sort** et on visionne la vidéo "Widget of the Week" du widget qu'il a choisi
    - Ces vidéos courtes (1-2 min chacune) présentent des widgets utiles pour vos TPs
    - Playlist : https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG
@@ -183,7 +182,7 @@ Le module est organisé en **7 séances d'environ 2h30 (soit 17h30)** :
 ### ⚠️ Attention si vous suivez l'option pas trop cool :
 - Si je constate du code très propre produit très rapidement, **je poserai des questions** sur votre code pendant le TP suivant
 - Si vous savez expliquer et comprendre ce que vous avez fait (même généré avec l'IA) : ✅ **pas de problème**
-- Si vous ne savez pas expliquer votre code ou ne comprenez pas ce qu'il fait : ❌ **TP noté sur 15** car on ne peut pas te laiser tous les crédits sur un truc que tu ne comprends pas quand même !
+- Si vous ne savez pas expliquer votre code ou ne comprenez pas ce qu'il fait : ❌ **TP noté sur 15** car on ne peut pas te laisser tous les crédits sur un truc que tu ne comprends pas quand même !
 
 ### 💡 Conseil :
 Utilisez l'IA comme un **tuteur**, pas comme un **remplaçant**. L'objectif est d'apprendre, pas juste de produire du code. Si vous ne comprenez pas quelque chose que l'IA a généré, demandez-lui de vous l'expliquer avant de l'intégrer. En entreprise, vous pourrez utiliser l'IA pour générer des choses que vous pourrez ne pas comprendre si c'est necessaire (même si vous aurez du mal à le maintenir), mais ici l'objectif est d'apprendre à coder vous-même ;)
