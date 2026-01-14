@@ -50,26 +50,16 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 
 class Movie {
-  final String title;
-  final int year;
-  final String poster;
-  final String description;
+  // TODO: Déclare les 4 propriétés finales :
+  // - title (String)
+  // - year (int)
+  // - poster (String)
+  // - description (String)
 
-  Movie({
-    required this.title,
-    required this.year,
-    required this.poster,
-    required this.description,
-  });
+  // TODO: Crée le constructeur avec des paramètres nommés required
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
-    return Movie(
-      title: json['title'],
-      year: json['year'],
-      poster: json['poster'],
-      description: json['description'],
-    );
-  }
+  // TODO: Crée un factory constructor Movie.fromJson(Map<String, dynamic> json)
+  // qui retourne une instance de Movie en lisant les valeurs du json
 }
 
 class MovieService {
@@ -81,10 +71,20 @@ class MovieService {
 }
 ```
 
+> **💡 Rappel TP2** : Tu as déjà créé des modèles similaires (`Answer`, `Question`). Le pattern est le même ici !
+
 > **💡 Notions clés expliquées :**
 > - **Future** : Représente une valeur qui sera disponible "dans le futur". Comme commander une pizza : tu n'as pas encore la pizza (Future), mais tu l'auras bientôt si le livreur arrive (on espère).
 > - **async/await** : `async` dit "cette fonction va prendre du temps", `await` dit "attends ici que ça se termine". C'est comme attendre que ton café soit prêt avant de le boire (sinon, c'est chaud !).
-> - **factory constructor** : Une méthode spéciale pour créer des objets. Ici, `Movie.fromJson()` transforme des données brutes JSON en objet Movie structuré.
+> - **factory constructor** : Une méthode spéciale pour créer des objets. Ici, `Movie.fromJson()` transforme des données brutes JSON en objet Movie structuré. Exemple :
+> ```dart
+> factory Movie.fromJson(Map<String, dynamic> json) {
+>   return Movie(
+>     title: json['title'],
+>     // ... autres propriétés
+>   );
+> }
+> ```
 > - **rootBundle.loadString()** : Charge un fichier texte depuis les assets (comme lire un fichier sur le disque).
 
 ---
@@ -212,12 +212,8 @@ class MovieCard extends StatelessWidget {
             width: 50,
             height: 75,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
-              width: 50,
-              height: 75,
-              color: Colors.grey[300],
-              child: const Icon(Icons.movie),
-            ),
+            // TODO: Ajoute errorBuilder pour gérer les erreurs de chargement
+            // (réutilise le même pattern que dans l'étape 3)
           ),
         ),
         title: Text(movie.title),
@@ -259,9 +255,10 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 
   void toggleFavorite(String title) {
-    setState(() {
-      favorites.contains(title) ? favorites.remove(title) : favorites.add(title);
-    });
+    // TODO: Implémente cette méthode
+    // - Si le titre est déjà dans favorites, retire-le
+    // - Sinon, ajoute-le
+    // - N'oublie pas d'appeler setState() pour rafraîchir l'UI !
   }
 
   @override
@@ -371,12 +368,7 @@ class MovieCard extends StatelessWidget {
               width: 50,
               height: 75,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
-                width: 50,
-                height: 75,
-                color: Colors.grey[300],
-                child: const Icon(Icons.movie),
-              ),
+              // TODO: Ajoute errorBuilder (même pattern qu'avant)
             ),
           ),
           title: Text(movie.title),
