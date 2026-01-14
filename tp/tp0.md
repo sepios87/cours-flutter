@@ -11,22 +11,9 @@
 
 ## 🪜 Étape 1 — Installer Flutter
 
-### Windows
-1. Télécharge le SDK Flutter : https://docs.flutter.dev/get-started/install/windows
-2. Extrais l'archive dans `C:\flutter`
-3. Ajoute Flutter au PATH :
-   - Recherche "variables d'environnement" dans Windows
-   - Dans "Variables système", trouve "Path" → "Modifier"
-   - Ajoute `C:\flutter\bin`
+La méthode la plus simple est de suivre la documentation officielle en ligne. Vous pouvez également utiliser l'extension VS Code pour vous guider.
 
-### macOS
-1. Télécharge le SDK Flutter : https://docs.flutter.dev/get-started/install/macos
-2. Extrais l'archive dans `~/flutter`
-3. Ajoute au PATH (édite `~/.zshrc`) :
-   ```bash
-   export PATH="$PATH:$HOME/flutter/bin"
-   source ~/.zshrc
-   ```
+👉 **Documentation officielle** : https://docs.flutter.dev/get-started/install
 
 ### ✅ Checkpoint : Vérifie l'installation
 
@@ -82,13 +69,22 @@ Android Studio permet de lancer l'application sur un émulateur Android.
 
 1. **Télécharge Android Studio** : https://developer.android.com/studio
 2. **Installe-le** et lance-le
-3. **Accepte les licences** :
+3. **Installe les Command-line Tools** (Indispensable) :
+   - Allez dans les paramètres d'Android Studio (Settings ou Preferences).
+   - Cherchez **Android SDK**.
+   - Cliquez sur l'onglet **SDK Tools**.
+   - Sélectionnez **Android SDK Command-line Tools (latest)**.
+   - Cliquez sur **Apply** pour installer.
+
+<img src="../img/watchmode_api.png" width="600" alt="Android SDK Tools">
+
+4. **Accepte les licences** :
    ```bash
    flutter doctor --android-licenses
    ```
    (Tape `y` pour accepter toutes les licences)
 
-4. **Crée un émulateur** :
+5. **Crée un émulateur** :
    - Dans Android Studio, va dans **Tools > Device Manager**
    - Clique sur **Create Device**
    - Choisis un modèle (ex : **Pixel 6**)
@@ -98,7 +94,7 @@ Android Studio permet de lancer l'application sur un émulateur Android.
 <img src="../img/device_manager.png" width="400" alt="Device manager">
 
 
-5. **Lance l'émulateur** :
+6. **Lance l'émulateur** :
    - Dans Device Manager, clique sur le bouton ▶️ à côté de ton émulateur
 
 ### ✅ Checkpoint : Vérifie l'émulateur
@@ -118,6 +114,11 @@ Android SDK built for x86 (mobile) • emulator-5554 • android-x86 • Android
 ---
 
 ## 🪜 Étape 4 — Créer ton premier projet
+
+### ⚠️ Important sur Windows
+**Évitez les accents dans vos chemins d'accès !**
+Si votre nom d'utilisateur Windows ou vos dossiers contiennent des accents (ex: `C:\Users\Hélène\Projets`), Flutter risque de planter lors du lancement sur Android (erreur de caractères inconnus). Cela s'applique également aux dossiers parents.
+Créez vos projets dans un dossier simple à la racine, comme `C:\dev` ou `C:\flutter_projects`.
 
 1. Ouvre un terminal :
    ```bash
