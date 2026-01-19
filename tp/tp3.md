@@ -526,9 +526,9 @@ class MyApp extends StatelessWidget {
 
 ---
 
-## 🪜 Étape 7 — Améliorer l'interface
+## 🪜 Étape 7 — Améliorer l'interface et rajouter un player vidéo
 
-Quelques idées pour aller plus loin :
+- Rajouter un player video pour les bandes annonces (soit via un lecteur youtube soit video un lecteur d'asset interne)
 - Transformer la liste en **grille** (`GridView.builder`) avec un bouton pour basculer entre les modes
 - Ajouter une **barre de recherche** (`TextField` + `setState`) pour filtrer les films par titre
 - Mettre une **animation** sur les favoris (`AnimatedIcon` ou `Hero` pour les transitions)
