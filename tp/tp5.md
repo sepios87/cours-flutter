@@ -208,10 +208,21 @@ Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
 ---
 
-### 🎁 Bonus (+1.5 points possibles)
+### 🎁 Bonus (+1 points possibles)
 
-#### Bonus : Tests unitaires et de widgets (+1.5 points)
+#### Bonus 1 : Tests unitaires et de widgets (+1 point)
 Tests unitaires et widgets significatifs (minimum 5 à 10 tests par catégorie) couvrant les fonctionnalités principales de l'application.
+
+##### Bonus 2 : Utiliser des règles de linter plus strictes (+1 point)
+- Aller sur la page [Very good analysis](https://pub.dev/packages/very_good_analysis) et l'installer sur le projet avec flutter pub add -d very_good_analysis
+- Aller dans analysis_options.yaml et coller ce rendu :
+```
+include: package:very_good_analysis/analysis_options.10.0.0.yaml
+
+linter:
+  rules:
+```
+- Bon courage maintenant !
 
 ---
 
