@@ -162,7 +162,10 @@ Votre README doit contenir :
 - Respect des conventions Dart/Flutter
 - Pas de code mort ou commenté en masse
 
-### 5. **Revue de code entre membres du binôme**
+## 5. **APK**
+- Un fichier APK déposé dans le repo Git pour pouvoir lancer et tester facilement l'application
+
+### 6. **Revue de code entre membres du binôme**
 Les deux membres doivent se faire des **code reviews mutuelles** via GitHub :
 
 > **💡 Pourquoi les code reviews ?**
